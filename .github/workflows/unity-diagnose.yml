@@ -1,0 +1,46 @@
+name: Unity Diagnostics
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    name: Unity Automated Diagnose
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Cache Unity Library
+        uses: actions/cache@v4
+        with:
+          path: Library
+          key: Library-${{ runner.os }}-${{ hashFiles('**/Packages/manifest.json') }}
+
+      - name: Run Unity in batchmode
+        uses: game-ci/unity-test-runner@v4
+        with:
+          unityVersion: 2022.3.39f1  # use a versão exata do seu jogo
+          projectPath: .
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          customParameters: -nographics -batchmode -quit -executeMethod CI.Entry.RunAll
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+
+      - name: Upload Editor Log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Editor-log
+          path: |
+            **/Editor.log
+            **/upm.log
