@@ -1,0 +1,141 @@
+================================================================================
+        PROFILER + LOGS - INÍCIO RÁPIDO (3 PASSOS)
+================================================================================
+
+LEIA ISSO PRIMEIRO!
+
+================================================================================
+PASSO 1: ABRIR UNITY COM PROFILER
+================================================================================
+
+Execute APENAS UM desses comandos:
+
+OPÇÃO A (Mais fácil):
+  1. Abrir Unity Hub
+  2. Procurar por "Torre Futuro"
+  3. Clicar em "Open"
+
+OPÇÃO B (Com script):
+  Abrir PowerShell e executar:
+
+  powershell -ExecutionPolicy Bypass -File C:\Users\renat\open-unity-with-profiler.ps1
+
+Resultado:
+  ✓ Unity abre
+  ✓ Profiler começa a capturar automaticamente
+  ✓ Asset Database comça a carregar
+
+Tempo: 30-60 segundos para Unity abrir + 5-10 minutos para Assets
+
+================================================================================
+PASSO 2: AGUARDAR COMPLETAR
+================================================================================
+
+Deixe Unity rodando até ver no Console:
+
+  "Asset Import Complete" ou "AssetDatabase Updated Successfully"
+
+Não feche Unity antes disso!
+
+Se ele travar:
+  - Aguarde 20 minutos (às vezes é lento mesmo)
+  - Se mesmo assim não funcionar, feche e continue para o Passo 3
+
+Tempo: 5-10 minutos
+
+================================================================================
+PASSO 3: ANALISAR DADOS
+================================================================================
+
+Abra PowerShell na pasta D:\games\torre futuro e execute:
+
+  powershell -ExecutionPolicy Bypass -File ".\LOGS\analyze-profiler-data.ps1"
+
+Isso irá gerar:
+  ✓ ANALYSIS_REPORT_*.txt (relatório automático)
+  ✓ Editor_*.log (cópia do log)
+  ✓ profile_*.raw (arquivo do profiler)
+
+Abra o ANALYSIS_REPORT para ver o resultado!
+
+Tempo: 30 segundos
+
+================================================================================
+RESULTADO FINAL
+================================================================================
+
+Você terá em D:\games\torre futuro\LOGS\:
+
+Profiler/
+  ✓ profile_20251105_160130.raw ← Dados de performance (abrir no Profiler)
+
+EditorLogs/
+  ✓ Editor_20251105_160130.log ← Log completo (procurar por erros)
+
+ANALYSIS_REPORT_20251105_160130.txt
+  ✓ Relatório automático com conclusões
+
+================================================================================
+LEIA MAIS
+================================================================================
+
+Para saber COMO INTERPRETAR os dados coletados:
+
+  Abra: D:\games\torre futuro\GUIA_PROFILER_E_LOGS.txt
+
+Este guia tem seções de:
+  - Como interpretar Memory, CPU, Assets
+  - Cenários comuns (OK, Travamento, Vazamento, Erro)
+  - Troubleshooting de problemas
+  - Dicas importantes
+
+================================================================================
+NEXT STEPS (Se tudo funcionou)
+================================================================================
+
+Se ANALYSIS_REPORT_*.txt disser:
+  ✓ "Status: OK" ou "Asset Database successfully imported"
+
+Então:
+  1. Seu projeto está funcionando
+  2. Você pode seguir com desenvolvimento normal
+  3. Asset Database foi recuperado com sucesso
+
+Se ANALYSIS_REPORT_*.txt disser:
+  ✗ "Unable to parse" ou "Error" ou "Problem detected"
+
+Então:
+  1. Há um problema que precisa investigação
+  2. Use o GUIA_PROFILER_E_LOGS.txt para interpretar
+  3. Procure pelos detalhes específicos nos logs
+
+================================================================================
+SUPORTE
+================================================================================
+
+Se você não entender algo:
+
+1. GUIA COMPLETO:
+   D:\games\torre futuro\GUIA_PROFILER_E_LOGS.txt
+
+2. ARQUIVOS DE DOCUMENTAÇÃO:
+   D:\games\torre futuro\LOGS\README.md
+   D:\games\torre futuro\LOGS\INDEX.txt
+
+3. SE NADA FUNCIONAR:
+   - Envie os arquivos de LOGS/
+   - Especialmente o ANALYSIS_REPORT_*.txt
+
+================================================================================
+RESUMÃO
+================================================================================
+
+1️⃣  Abra Unity (espere 5-10 min para Assets carregar)
+2️⃣  Execute analyze-profiler-data.ps1
+3️⃣  Leia o ANALYSIS_REPORT para saber o resultado
+
+Tudo é AUTOMÁTICO - você não precisa fazer nada manual!
+
+🎉 Pronto! Seus dados de performance estão coletados!
+
+================================================================================

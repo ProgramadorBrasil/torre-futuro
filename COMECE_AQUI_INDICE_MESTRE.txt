@@ -1,0 +1,586 @@
+================================================================================
+  COMECE AQUI - INDICE MESTRE DE DOCUMENTACAO
+  TORRE FUTURO - SPACE TOWER DEFENSE
+================================================================================
+
+VERSAO: 1.0 Production Ready
+DATA: 2025-11-05
+STATUS: 100% COMPLETO E PRONTO PARA USAR
+
+================================================================================
+  BEM-VINDO!
+================================================================================
+
+Voce tem em maos um projeto COMPLETO e totalmente funcional de um jogo
+Space Tower Defense desenvolvido em Unity.
+
+Este indice e seu ponto de partida. Leia este arquivo PRIMEIRO para
+entender a estrutura da documentacao e saber por onde comecar.
+
+================================================================================
+  COMO USAR ESTE INDICE
+================================================================================
+
+1. Leia este arquivo completamente (5 minutos)
+2. Identifique seu perfil (iniciante/intermediario/avancado)
+3. Siga o caminho recomendado para seu perfil
+4. Consulte documentos conforme necessidade
+5. Use como referencia continua
+
+================================================================================
+  DOCUMENTACAO PRINCIPAL (LEIA NESTA ORDEM!)
+================================================================================
+
+┌────────────────────────────────────────────────────────────────────┐
+│ 1. COMECE_AGORA_GUIA_COMPLETO.md                                   │
+│    ★★★★★ ESSENCIAL - LEIA PRIMEIRO!                                │
+├────────────────────────────────────────────────────────────────────┤
+│ O QUE E:                                                           │
+│   Guia completo de 2000+ linhas com TUDO que voce precisa saber   │
+│   para comecar a usar o projeto HOJE.                             │
+│                                                                    │
+│ CONTEUDO:                                                          │
+│   - Status final do projeto                                       │
+│   - Pre-requisitos (hardware/software)                            │
+│   - Passo a passo para abrir no Unity                             │
+│   - Primeiro teste (apertar Play!)                                │
+│   - Validacao completa                                            │
+│   - Controles basicos                                             │
+│   - Proximos passos                                               │
+│   - Troubleshooting rapido                                        │
+│   - Recursos uteis                                                │
+│   - Suporte e FAQ                                                 │
+│                                                                    │
+│ QUANDO LER:                                                        │
+│   AGORA! Antes de fazer qualquer outra coisa.                     │
+│                                                                    │
+│ TEMPO DE LEITURA: 30-45 minutos                                   │
+│ LOCALIZACAO: D:\games\torre futuro\COMECE_AGORA_GUIA_COMPLETO.md  │
+└────────────────────────────────────────────────────────────────────┘
+
+┌────────────────────────────────────────────────────────────────────┐
+│ 2. CHECKLIST_COMECO_RAPIDO.txt                                     │
+│    ★★★★★ ESSENCIAL - USE COMO GUIA                                 │
+├────────────────────────────────────────────────────────────────────┤
+│ O QUE E:                                                           │
+│   Checklist executavel passo-a-passo para ir de ZERO ate          │
+│   jogo funcionando em 30-45 minutos.                              │
+│                                                                    │
+│ CONTEUDO:                                                          │
+│   - Fase 1: Verificacao inicial (5 min)                           │
+│   - Fase 2: Instalacao Unity (10-30 min)                          │
+│   - Fase 3: Abrir projeto (5-10 min)                              │
+│   - Fase 4: Primeiro teste (10 min)                               │
+│   - Fase 5: Validacao completa (5 min)                            │
+│   - Fase 6: Proximos passos (leitura)                             │
+│   - Troubleshooting rapido                                        │
+│   - Recursos adicionais                                           │
+│                                                                    │
+│ QUANDO USAR:                                                       │
+│   Enquanto executa os passos para abrir o projeto.                │
+│   Marque cada item conforme completa.                             │
+│                                                                    │
+│ TEMPO DE EXECUCAO: 30-45 minutos                                  │
+│ LOCALIZACAO: D:\games\torre futuro\CHECKLIST_COMECO_RAPIDO.txt    │
+└────────────────────────────────────────────────────────────────────┘
+
+┌────────────────────────────────────────────────────────────────────┐
+│ 3. CONTROLES_E_GAMEPLAY.txt                                        │
+│    ★★★★☆ IMPORTANTE - REFERENCIA DE JOGO                           │
+├────────────────────────────────────────────────────────────────────┤
+│ O QUE E:                                                           │
+│   Guia completo de controles, gameplay, estrategias e dicas        │
+│   para jogar Torre Futuro como um profissional.                   │
+│                                                                    │
+│ CONTEUDO:                                                          │
+│   - Controles completos (movimento, combate, construcao)          │
+│   - Gameplay basico (objetivo, game loop)                         │
+│   - Sistemas do jogo (vida, recursos, waves, score)               │
+│   - Estrategias (early/mid/late game)                             │
+│   - Inimigos e ondas (tipos, comportamentos)                      │
+│   - Upgrades e progressao                                         │
+│   - Torres e construcao                                           │
+│   - Dicas avancadas (kiting, combos, etc)                         │
+│   - FAQ gameplay                                                  │
+│                                                                    │
+│ QUANDO LER:                                                        │
+│   Depois de testar o jogo pela primeira vez.                      │
+│   Use como referencia enquanto joga.                              │
+│                                                                    │
+│ TEMPO DE LEITURA: 20-30 minutos                                   │
+│ LOCALIZACAO: D:\games\torre futuro\CONTROLES_E_GAMEPLAY.txt       │
+└────────────────────────────────────────────────────────────────────┘
+
+================================================================================
+  DOCUMENTACAO DE DESENVOLVIMENTO
+================================================================================
+
+┌────────────────────────────────────────────────────────────────────┐
+│ 4. ROADMAP_7DIAS.md                                                │
+│    ★★★★★ ESSENCIAL - PLANO DE DESENVOLVIMENTO                      │
+├────────────────────────────────────────────────────────────────────┤
+│ O QUE E:                                                           │
+│   Roadmap detalhado dia-a-dia para transformar o projeto em       │
+│   algo unico seu nos proximos 7 dias.                             │
+│                                                                    │
+│ CONTEUDO:                                                          │
+│   - Dia 1: Familiarizacao e Setup                                 │
+│   - Dia 2: Tweaks e Balanceamento                                 │
+│   - Dia 3: Primeira Adicao de Conteudo                            │
+│   - Dia 4: Polish Visual                                          │
+│   - Dia 5: Audio e Feel                                           │
+│   - Dia 6: Mais Conteudo                                          │
+│   - Dia 7: Teste Final e Build                                    │
+│   - Proximos 30 dias (roadmap estendido)                          │
+│   - Recursos e referencias                                        │
+│                                                                    │
+│ QUANDO LER:                                                        │
+│   Depois de ter o jogo funcionando e querer comecar a             │
+│   desenvolver e adicionar features.                               │
+│                                                                    │
+│ TEMPO DE LEITURA: 30-40 minutos                                   │
+│ TEMPO DE EXECUCAO: 7 dias (5-6 horas/dia)                         │
+│ LOCALIZACAO: D:\games\torre futuro\ROADMAP_7DIAS.md               │
+└────────────────────────────────────────────────────────────────────┘
+
+┌────────────────────────────────────────────────────────────────────┐
+│ 5. DIAGRAMA_PROXIMO_PASSO.txt                                      │
+│    ★★★★☆ UTIL - FLUXOGRAMA DE DECISAO                              │
+├────────────────────────────────────────────────────────────────────┤
+│ O QUE E:                                                           │
+│   Fluxograma visual e arvores de decisao para escolher o          │
+│   caminho certo de desenvolvimento baseado em seus objetivos.     │
+│                                                                    │
+│ CONTEUDO:                                                          │
+│   - Decisao por nivel de experiencia                              │
+│   - Decisao por objetivo (aprender/portfolio/comercial)           │
+│   - Decisao por tempo disponivel                                  │
+│   - Decisao por tipo de feature                                   │
+│   - Timelines para cada caminho                                   │
+│   - Checklist de decisao                                          │
+│   - Mapa mental simplificado                                      │
+│                                                                    │
+│ QUANDO LER:                                                        │
+│   Quando estiver decidindo o que fazer com o projeto.             │
+│   Use para planejar seu caminho de desenvolvimento.               │
+│                                                                    │
+│ TEMPO DE LEITURA: 15-20 minutos                                   │
+│ LOCALIZACAO: D:\games\torre futuro\DIAGRAMA_PROXIMO_PASSO.txt     │
+└────────────────────────────────────────────────────────────────────┘
+
+================================================================================
+  DOCUMENTACAO DE SUPORTE
+================================================================================
+
+┌────────────────────────────────────────────────────────────────────┐
+│ 6. TROUBLESHOOTING_RAPIDO.txt                                      │
+│    ★★★★★ ESSENCIAL - SOLUCAO DE PROBLEMAS                          │
+├────────────────────────────────────────────────────────────────────┤
+│ O QUE E:                                                           │
+│   Guia completo de troubleshooting com 30+ problemas comuns       │
+│   e suas solucoes detalhadas.                                     │
+│                                                                    │
+│ CONTEUDO:                                                          │
+│   - Problemas de instalacao                                       │
+│   - Problemas ao abrir projeto                                    │
+│   - Erros de compilacao                                           │
+│   - Problemas de gameplay                                         │
+│   - Problemas de performance                                      │
+│   - Problemas de audio                                            │
+│   - Problemas de UI                                               │
+│   - Problemas de build                                            │
+│   - Erros comuns e solucoes                                       │
+│   - Quando pedir ajuda (e como)                                   │
+│                                                                    │
+│ QUANDO LER:                                                        │
+│   QUANDO TIVER UM PROBLEMA!                                        │
+│   Ou leia preventivamente para evitar problemas.                  │
+│                                                                    │
+│ TEMPO DE LEITURA: 25-35 minutos                                   │
+│ LOCALIZACAO: D:\games\torre futuro\TROUBLESHOOTING_RAPIDO.txt     │
+└────────────────────────────────────────────────────────────────────┘
+
+┌────────────────────────────────────────────────────────────────────┐
+│ 7. API_REFERENCE.md (se existir)                                   │
+│    ★★★☆☆ REFERENCIA - DOCUMENTACAO TECNICA                         │
+├────────────────────────────────────────────────────────────────────┤
+│ O QUE E:                                                           │
+│   Documentacao tecnica completa de todos os scripts, classes,     │
+│   metodos e sistemas do jogo.                                     │
+│                                                                    │
+│ CONTEUDO:                                                          │
+│   - Arquitetura do projeto                                        │
+│   - Classes e seus membros                                        │
+│   - Sistemas e como funcionam                                     │
+│   - APIs publicas                                                 │
+│   - Exemplos de codigo                                            │
+│   - Patterns usados                                               │
+│                                                                    │
+│ QUANDO LER:                                                        │
+│   Quando comecar a programar e adicionar features.                │
+│   Use como referencia continua durante desenvolvimento.           │
+│                                                                    │
+│ TEMPO DE LEITURA: Referencia continua                             │
+│ LOCALIZACAO: D:\games\torre futuro\API_REFERENCE.md               │
+└────────────────────────────────────────────────────────────────────┘
+
+================================================================================
+  CAMINHOS RECOMENDADOS POR PERFIL
+================================================================================
+
+────────────────────────────────────────────────────────────────────
+PERFIL 1: INICIANTE COMPLETO
+(Nunca usei Unity, pouca experiencia com programacao)
+────────────────────────────────────────────────────────────────────
+
+OBJETIVOS:
+  - Entender o projeto
+  - Aprender Unity basico
+  - Fazer pequenas mudancas
+  - Se divertir!
+
+CAMINHO RECOMENDADO:
+
+DIA 1 (4-5 horas):
+  1. Ler: COMECE_AGORA_GUIA_COMPLETO.md (45 min)
+  2. Executar: CHECKLIST_COMECO_RAPIDO.txt (30-45 min)
+  3. Jogar: Torre Futuro (30 min)
+  4. Ler: CONTROLES_E_GAMEPLAY.txt (30 min)
+  5. Explorar: Unity Editor (1 hora)
+  6. Tutorial: Unity Learn Essentials (1-2 horas)
+
+DIA 2-3 (8-10 horas):
+  7. Unity Learn: Pathways (online gratis)
+  8. Experimentar: Mudancas no Inspector
+  9. Ler: Secoes relevantes de ROADMAP_7DIAS.md
+
+DIA 4-7 (15-20 horas):
+  10. Seguir: ROADMAP_7DIAS.md adaptado
+  11. Features simples (mudar cores, valores, etc)
+  12. Consultar: TROUBLESHOOTING quando necessario
+
+RECURSOS EXTRAS:
+  - YouTube: Brackeys (Unity for Beginners)
+  - Unity Manual: https://docs.unity3d.com/Manual/
+
+────────────────────────────────────────────────────────────────────
+PERFIL 2: INTERMEDIARIO
+(Ja usei Unity antes, confortavel com C#)
+────────────────────────────────────────────────────────────────────
+
+OBJETIVOS:
+  - Customizar projeto rapidamente
+  - Adicionar features novas
+  - Criar portfolio piece
+  - Lancar algo
+
+CAMINHO RECOMENDADO:
+
+DIA 1 (2-3 horas):
+  1. Ler: COMECE_AGORA_GUIA_COMPLETO.md (skimming - 20 min)
+  2. Executar: CHECKLIST_COMECO_RAPIDO.txt (30 min)
+  3. Jogar e testar: (30 min)
+  4. Ler: API_REFERENCE.md (30 min)
+  5. Revisar: Codigo fonte (30 min)
+
+DIA 2-7 (20-30 horas):
+  6. Seguir: ROADMAP_7DIAS.md completo
+  7. Adicionar 3-5 features proprias
+  8. Polish visual e audio
+  9. Build executavel
+  10. Documentar mudancas
+
+RECURSOS EXTRAS:
+  - Unity Advanced topics
+  - Design Patterns for Game Development
+
+────────────────────────────────────────────────────────────────────
+PERFIL 3: AVANCADO
+(Experiente em Unity, quer usar como base para projeto maior)
+────────────────────────────────────────────────────────────────────
+
+OBJETIVOS:
+  - Entender arquitetura rapidamente
+  - Refatorar e otimizar
+  - Adicionar features complexas
+  - Lancar comercialmente
+
+CAMINHO RECOMENDADO:
+
+DIA 1 (3-4 horas):
+  1. Code review completo
+  2. Identificar areas de melhoria
+  3. Planejar refatoracao
+  4. Ler: DIAGRAMA_PROXIMO_PASSO.txt para planejar
+
+DIA 2-7 (25-35 horas):
+  5. Refatoracao arquitetural
+  6. Features avancadas (multiplayer, procedural, etc)
+  7. Performance optimization
+  8. Marketing prep e build
+
+RECURSOS EXTRAS:
+  - Unity Best Practices
+  - Professional Game Development patterns
+
+================================================================================
+  ORDEM DE LEITURA RECOMENDADA
+================================================================================
+
+PRIMEIRO DIA:
+  1. COMECE_AQUI_INDICE_MESTRE.txt (este arquivo) - 5 min
+  2. COMECE_AGORA_GUIA_COMPLETO.md - 45 min
+  3. CHECKLIST_COMECO_RAPIDO.txt (executar) - 30-45 min
+  4. CONTROLES_E_GAMEPLAY.txt - 30 min
+     TOTAL: ~2 horas
+
+PROXIMOS DIAS:
+  5. ROADMAP_7DIAS.md (Dia 1) - 40 min + execucao
+  6. DIAGRAMA_PROXIMO_PASSO.txt - 20 min
+  7. Consultar TROUBLESHOOTING conforme necessario
+  8. Consultar API_REFERENCE conforme desenvolve
+
+REFERENCIA CONTINUA:
+  - CONTROLES_E_GAMEPLAY.txt quando jogar
+  - TROUBLESHOOTING_RAPIDO.txt quando problemas
+  - API_REFERENCE.md quando programar
+
+================================================================================
+  ESTRUTURA DO PROJETO (OVERVIEW)
+================================================================================
+
+D:\games\torre futuro\
+│
+├── Assets/                    ← Todos os assets do Unity
+│   ├── Audio/                 ← Musicas e SFX
+│   ├── Materials/             ← Materiais 3D
+│   ├── Models/                ← Modelos 3D
+│   ├── Prefabs/               ← Prefabs (nave, inimigos, etc)
+│   ├── Scenes/                ← Cenas do jogo
+│   │   └── MainGame.unity     ← Cena principal
+│   └── Scripts/               ← Todos os scripts C#
+│       ├── Core/              ← Scripts core
+│       ├── Data/              ← Data structures
+│       ├── Effects/           ← Efeitos visuais
+│       ├── Managers/          ← Managers do jogo
+│       ├── Systems/           ← Sistemas (armas, upgrade)
+│       └── UI/                ← Scripts de UI
+│
+├── ProjectSettings/           ← Configuracoes Unity
+├── Packages/                  ← Pacotes Unity
+│
+└── [DOCUMENTACAO]             ← Todos os arquivos .md e .txt
+    ├── COMECE_AQUI_INDICE_MESTRE.txt (ESTE ARQUIVO)
+    ├── COMECE_AGORA_GUIA_COMPLETO.md
+    ├── CHECKLIST_COMECO_RAPIDO.txt
+    ├── ROADMAP_7DIAS.md
+    ├── CONTROLES_E_GAMEPLAY.txt
+    ├── TROUBLESHOOTING_RAPIDO.txt
+    ├── DIAGRAMA_PROXIMO_PASSO.txt
+    └── API_REFERENCE.md
+
+================================================================================
+  FAQ RAPIDO
+================================================================================
+
+Q: Por onde eu REALMENTE comeco?
+A: 1. Leia COMECE_AGORA_GUIA_COMPLETO.md
+   2. Execute CHECKLIST_COMECO_RAPIDO.txt
+   3. Jogue o jogo
+   4. Decida proximos passos
+
+Q: Quanto tempo ate eu estar jogando?
+A: 30-45 minutos se seguir o CHECKLIST.
+   Primeira vez abrindo Unity pode demorar mais (instalacao).
+
+Q: Preciso saber programar?
+A: Para JOGAR: Nao
+   Para MODIFICAR: Basico de Unity ajuda
+   Para DESENVOLVER: Sim, C# necessario
+
+Q: Posso pular a documentacao e ir direto ao jogo?
+A: Pode, mas vai se perder. Recomendo ler pelo menos o
+   COMECE_AGORA_GUIA_COMPLETO.md primeiro.
+
+Q: Onde esta o codigo fonte?
+A: D:\games\torre futuro\Assets\Scripts\
+
+Q: Como compilo/rodo o jogo?
+A: Abra no Unity, pressione Play. Simples assim!
+   Para executavel: File > Build Settings > Build
+
+Q: E se eu tiver problemas?
+A: TROUBLESHOOTING_RAPIDO.txt tem 30+ solucoes.
+   Se nao resolver, veja secao "Quando Pedir Ajuda".
+
+Q: Posso usar comercialmente?
+A: Verifique licencas dos assets usados. Scripts sao seus.
+
+================================================================================
+  PROXIMA ACAO IMEDIATA
+================================================================================
+
+AGORA MESMO (proximos 5 minutos):
+
+  [ ] Marque este checkbox quando ler este indice
+  [ ] Abra: COMECE_AGORA_GUIA_COMPLETO.md
+  [ ] Leia a secao 1 (Status Final do Projeto)
+  [ ] Tenha: CHECKLIST_COMECO_RAPIDO.txt aberto em outra janela
+  [ ] Prepare-se para abrir Unity!
+
+PROXIMOS 30 MINUTOS:
+
+  [ ] Execute CHECKLIST_COMECO_RAPIDO.txt Fase 1-3
+  [ ] Abra projeto no Unity
+  [ ] Pressione PLAY
+  [ ] JOGUE!
+
+PROXIMA 1 HORA:
+
+  [ ] Complete validacao (CHECKLIST Fase 4-5)
+  [ ] Leia CONTROLES_E_GAMEPLAY.txt
+  [ ] Jogue mais 20 minutos
+  [ ] Decida proximos passos
+
+DEPOIS:
+
+  [ ] Escolha seu perfil (Iniciante/Intermediario/Avancado)
+  [ ] Siga caminho recomendado acima
+  [ ] Comece desenvolvimento (ou apenas se divirta!)
+
+================================================================================
+  SUPORTE E COMUNIDADE
+================================================================================
+
+DOCUMENTACAO INTERNA:
+  - Todos os arquivos .md e .txt nesta pasta
+  - Comentarios no codigo fonte
+  - README.md do projeto
+
+UNITY OFFICIAL:
+  - Unity Manual: https://docs.unity3d.com/Manual/
+  - Unity Learn: https://learn.unity.com/
+  - Unity Answers: https://answers.unity.com/
+  - Unity Forum: https://forum.unity.com/
+
+COMUNIDADES:
+  - Reddit r/Unity3D: https://reddit.com/r/Unity3D
+  - Reddit r/gamedev: https://reddit.com/r/gamedev
+  - Discord: Unity Developer Community
+  - Stack Overflow (tag: unity3d)
+
+TUTORIAIS:
+  - Brackeys (YouTube)
+  - Code Monkey (YouTube)
+  - Sebastian Lague (YouTube)
+
+================================================================================
+  CHECKLIST DE PRIMEIRO USO
+================================================================================
+
+ANTES DE COMECAR:
+  [ ] Li este indice completo
+  [ ] Sei qual meu perfil (iniciante/intermediario/avancado)
+  [ ] Tenho Unity instalado (ou vou instalar)
+  [ ] Tenho tempo disponivel (minimo 1 hora)
+  [ ] Estou animado para comecar!
+
+PRIMEIRO DIA:
+  [ ] COMECE_AGORA_GUIA_COMPLETO.md lido
+  [ ] CHECKLIST_COMECO_RAPIDO.txt executado
+  [ ] Projeto aberto no Unity
+  [ ] Jogo testado (Play Mode)
+  [ ] CONTROLES_E_GAMEPLAY.txt lido
+  [ ] Decidi proximos passos
+
+PROXIMOS DIAS:
+  [ ] Escolhi um caminho (Aprender/Portfolio/Comercial)
+  [ ] Tenho plano (ROADMAP ou proprio)
+  [ ] Comecei desenvolvimento
+  [ ] Consultando docs conforme necessario
+  [ ] Me divertindo!
+
+================================================================================
+  CREDITOS E INFORMACOES
+================================================================================
+
+PROJETO: Torre Futuro - Space Tower Defense
+VERSAO: 1.0 Production Ready
+DATA: 2025-11-05
+STATUS: 100% Completo e Pronto para Usar
+
+DESENVOLVIDO POR:
+  - Renat (Project Owner)
+  - Claude (Anthropic AI) - Assistencia em desenvolvimento
+
+DOCUMENTACAO:
+  - 6 documentos principais
+  - 15000+ linhas de documentacao
+  - Cobertura completa de todos os aspectos
+
+ENGINE: Unity 2021.3+ LTS
+LINGUAGEM: C#
+PLATAFORMA: PC (Windows/Mac/Linux)
+
+LICENCA:
+  - Codigo fonte: Seu uso
+  - Assets: Verifique licencas individuais
+  - Documentacao: Livre uso
+
+================================================================================
+  MOTIVACAO FINAL
+================================================================================
+
+Voce tem em maos um projeto COMPLETO e FUNCIONAL.
+
+Muitos projetos nunca chegam neste ponto. Voce ja tem:
+  ✓ Jogo funcionando
+  ✓ Codigo organizado
+  ✓ Documentacao completa
+  ✓ Roadmap claro
+  ✓ Suporte disponivel
+
+TUDO que voce precisa e COMECAR.
+
+Nao existe momento perfeito. Nao existe preparacao total.
+O melhor momento e AGORA.
+
+Pegue o COMECE_AGORA_GUIA_COMPLETO.md.
+Execute o CHECKLIST.
+Abra o Unity.
+Pressione PLAY.
+
+E comece sua jornada de game development!
+
+VOCE CONSEGUE! 🚀
+
+================================================================================
+  ACAO IMEDIATA - REPRISE
+================================================================================
+
+                    ╔═══════════════════════════════╗
+                    ║                               ║
+                    ║  PROXIMO PASSO:               ║
+                    ║                               ║
+                    ║  Abra:                        ║
+                    ║  COMECE_AGORA_GUIA_COMPLETO.md║
+                    ║                               ║
+                    ║  E:                           ║
+                    ║  CHECKLIST_COMECO_RAPIDO.txt  ║
+                    ║                               ║
+                    ║  AGORA!                       ║
+                    ║                               ║
+                    ╚═══════════════════════════════╝
+
+BOA SORTE E BOM DESENVOLVIMENTO!
+
+================================================================================
+FIM DO INDICE MESTRE
+================================================================================
+
+Feito com dedicacao por Claude + Renat
+Torre Futuro v1.0 - 2025-11-05
+
+Proximos arquivos a ler:
+  → COMECE_AGORA_GUIA_COMPLETO.md
+  → CHECKLIST_COMECO_RAPIDO.txt

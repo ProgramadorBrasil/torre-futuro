@@ -1,0 +1,1044 @@
+================================================================================
+  CONTROLES E GAMEPLAY - TORRE FUTURO
+  GUIA COMPLETO DE COMO JOGAR
+================================================================================
+
+VERSAO: 1.0
+DATA: 2025-11-05
+GENERO: Space Tower Defense
+PLATAFORMA: PC (Windows/Mac/Linux)
+
+================================================================================
+  INDICE
+================================================================================
+
+1. CONTROLES COMPLETOS
+2. GAMEPLAY BASICO
+3. SISTEMAS DO JOGO
+4. ESTRATEGIAS E DICAS
+5. INIMIGOS E ONDAS
+6. UPGRADES E PROGRESSAO
+7. TORRES E CONSTRUCAO
+8. DICAS AVANCADAS
+9. FAQ GAMEPLAY
+
+================================================================================
+  1. CONTROLES COMPLETOS
+================================================================================
+
+────────────────────────────────────────────────────────────────────
+  MOVIMENTO DA NAVE
+────────────────────────────────────────────────────────────────────
+
+TECLADO PRINCIPAL:
+  W             - Mover para CIMA
+  A             - Mover para ESQUERDA
+  S             - Mover para BAIXO
+  D             - Mover para DIREITA
+
+TECLADO ALTERNATIVO:
+  ↑             - Mover para CIMA
+  ←             - Mover para ESQUERDA
+  ↓             - Mover para BAIXO
+  →             - Mover para DIREITA
+
+MOVIMENTO DIAGONAL:
+  W + A         - Cima e Esquerda
+  W + D         - Cima e Direita
+  S + A         - Baixo e Esquerda
+  S + D         - Baixo e Direita
+
+DICAS DE MOVIMENTO:
+- Movimento e suave e responsivo
+- Nave tem boundaries (nao sai da tela)
+- Velocidade pode ser upgradada
+- Pratique movimento diagonal para melhor mobilidade
+
+────────────────────────────────────────────────────────────────────
+  COMBATE E DISPARO
+────────────────────────────────────────────────────────────────────
+
+DISPARO PRIMARIO:
+  SPACEBAR      - Disparar arma principal
+  MOUSE LEFT    - Disparar arma principal (alternativa)
+
+DISPARO CONTINUO:
+  HOLD SPACE    - Fogo continuo (se fire rate permitir)
+
+ARMAS ESPECIAIS (se implementado):
+  Q             - Arma especial / Habilidade 1
+  E             - Arma especial / Habilidade 2
+  R             - Recarregar (se sistema de municao)
+  F             - Arma ultimate (se implementado)
+
+TROCAR ARMAS (se multiplas armas):
+  1             - Arma slot 1
+  2             - Arma slot 2
+  3             - Arma slot 3
+  4             - Arma slot 4
+  SCROLL WHEEL  - Ciclar entre armas
+
+DICAS DE COMBATE:
+- Leading shots: Atire onde inimigo VAI estar
+- Conserve armas especiais para emergencias
+- Fire rate pode ser upgradado
+- Projeteis tem tempo de vida limitado
+
+────────────────────────────────────────────────────────────────────
+  CONSTRUCAO DE TORRES
+────────────────────────────────────────────────────────────────────
+
+MODO PLANTIO:
+  T             - Entrar/Sair do modo plantio de torres
+  B             - Abrir menu de construcao (alternativa)
+
+NO MODO PLANTIO:
+  MOUSE MOVE    - Posicionar cursor de plantio
+  LEFT CLICK    - Plantar torre na posicao do cursor
+  RIGHT CLICK   - Cancelar / Sair do modo plantio
+  SCROLL WHEEL  - Mudar tipo de torre selecionada
+
+INTERAGIR COM TORRES:
+  LEFT CLICK    - Selecionar torre (click na torre)
+  U             - Upgrade torre selecionada
+  DELETE        - Remover torre selecionada
+  BACKSPACE     - Remover torre selecionada (alternativa)
+  I             - Ver informacoes da torre
+
+DICAS DE CONSTRUCAO:
+- Torres custam recursos
+- Posicione estrategicamente (chokepoints)
+- Torres automaticamente miram e atiram
+- Upgrades custam mais que construir nova torre
+- Planeje grid de torres
+
+────────────────────────────────────────────────────────────────────
+  MENU E NAVEGACAO
+────────────────────────────────────────────────────────────────────
+
+MENUS:
+  ESC           - Pausar jogo / Menu de pausa
+  ESC (2x)      - Voltar ao menu principal (da pausa)
+  P             - Pause rapido
+  M             - Mapa (se implementado)
+  I             - Inventario / Menu de upgrades
+  H             - Ajuda / Tutorial
+  F1            - Controles / Ajuda rapida
+
+NO MENU DE PAUSA:
+  MOUSE         - Navegar opcoes
+  LEFT CLICK    - Selecionar opcao
+  ESC           - Resumir jogo
+
+CONFIGURACOES:
+  Tab (no menu) - Ir para configuracoes
+  Sliders       - Ajustar volume, graficos, etc
+
+DICAS:
+- Pode pausar a qualquer momento
+- Configuracoes salvam automaticamente
+- ESC e seu melhor amigo
+
+────────────────────────────────────────────────────────────────────
+  CAMERA E VISUALIZACAO
+────────────────────────────────────────────────────────────────────
+
+CAMERA:
+  SCROLL WHEEL  - Zoom in/out (se zoom implementado)
+  MIDDLE MOUSE  - Pan camera (arrastar camera)
+  BORDAS TELA   - Scroll camera (auto em algumas versoes)
+
+INTERFACE:
+  TAB           - Toggle HUD (mostrar/esconder)
+  F3            - Toggle debug info (FPS, stats)
+  F11           - Toggle fullscreen
+  F12           - Screenshot
+
+────────────────────────────────────────────────────────────────────
+  DEBUG E UTILIDADES (se debug mode ativo)
+────────────────────────────────────────────────────────────────────
+
+DEBUG COMMANDS:
+  ~             - Console de comandos (se implementado)
+  F5            - Quick save
+  F9            - Quick load
+  + / -         - Aumentar/Diminuir game speed
+  G             - Toggle god mode (invencibilidade)
+  K             - Matar todos os inimigos (teste)
+  Ctrl+R        - Restart wave
+
+NOTA: Debug commands apenas em Development Build
+
+================================================================================
+  2. GAMEPLAY BASICO
+================================================================================
+
+────────────────────────────────────────────────────────────────────
+  OBJETIVO DO JOGO
+────────────────────────────────────────────────────────────────────
+
+OBJETIVO PRINCIPAL:
+  Defender sua base espacial contra ondas (waves) infinitas de
+  inimigos invasores. Sobreviva o maximo de waves possivel!
+
+SUB-OBJETIVOS:
+  - Destruir inimigos para ganhar recursos
+  - Usar recursos para fazer upgrades
+  - Construir torres de defesa
+  - Alcancar high score
+  - Completar achievements (se implementado)
+
+WIN CONDITION:
+  Nao ha vitoria final - jogo e sobre sobreviver o maximo possivel
+  e alcancar high score. Cada wave fica progressivamente mais dificil.
+
+LOSE CONDITION:
+  Vida da nave chega a 0 = Game Over
+  Pode retry imediatamente ou voltar ao menu
+
+────────────────────────────────────────────────────────────────────
+  COMO COMECAR (PRIMEIROS 2 MINUTOS)
+────────────────────────────────────────────────────────────────────
+
+1. WAVE 1 INICIA
+   - Inimigos comecam a spawnar
+   - Use WASD para mover
+   - SPACE para atirar
+
+2. DESTRUIR INIMIGOS
+   - Mire e dispare
+   - Inimigos dropam recursos ao morrer
+   - Colete recursos (automatico ou manual)
+
+3. PRIMEIRA TORRE
+   - Pressione T para modo plantio
+   - Click para plantar primeira torre
+   - Torres automaticamente atacam
+
+4. SOBREVIVER WAVE 1
+   - Continue destruindo inimigos
+   - Evite ser atingido
+   - Wave completa quando todos inimigos mortos
+
+5. WAVE INTERMISSION
+   - Breve pausa entre waves
+   - Use recursos para upgrades
+   - Plante mais torres
+   - Prepare-se para proxima wave
+
+────────────────────────────────────────────────────────────────────
+  LOOP DE GAMEPLAY
+────────────────────────────────────────────────────────────────────
+
+O jogo segue um ciclo repetitivo:
+
+WAVE PREPARATION (15-30 segundos)
+  ├── Gastar recursos em upgrades
+  ├── Plantar/Upgrade torres
+  ├── Reposicionar se necessario
+  └── Revisar estrategia
+
+WAVE ACTIVE (60-120 segundos)
+  ├── Inimigos spawnam continuamente
+  ├── Destruir inimigos (voce + torres)
+  ├── Coletar recursos dropados
+  ├── Evitar tomar dano
+  └── Sobreviver ate wave acabar
+
+WAVE COMPLETE
+  ├── Bonus de recursos por completar
+  ├── Estatisticas da wave
+  ├── Breve descanso
+  └── Volta para WAVE PREPARATION
+
+PROGRESSAO INFINITA:
+  - Cada wave subsequente e mais dificil
+  - Mais inimigos
+  - Inimigos mais fortes
+  - Novos tipos de inimigos
+  - Boss waves a cada X waves
+
+================================================================================
+  3. SISTEMAS DO JOGO
+================================================================================
+
+────────────────────────────────────────────────────────────────────
+  SISTEMA DE VIDA / HP
+────────────────────────────────────────────────────────────────────
+
+HP (Health Points):
+  - Sua nave tem HP limitado
+  - HP atual mostrado na HUD
+  - Tomar dano diminui HP
+  - HP = 0 -> Game Over
+
+REGENERACAO:
+  - HP NAO regenera automaticamente (geralmente)
+  - Pode ter powerups de cura
+  - Ou upgrade de regeneracao
+
+SHIELD (se implementado):
+  - Shield absorve dano antes de HP
+  - Shield pode regenerar
+  - Indicador visual de shield
+
+DANO:
+  - Colisao com inimigos = Dano
+  - Projeteis inimigos = Dano
+  - Obstaculos (raramente) = Dano
+  - Dano mostrado visualmente (flash vermelho)
+
+────────────────────────────────────────────────────────────────────
+  SISTEMA DE RECURSOS
+────────────────────────────────────────────────────────────────────
+
+METAL (recurso principal):
+  - Ganho destruindo inimigos
+  - Ganho completando waves
+  - Usado para upgrades e torres
+  - Mostrado na HUD
+
+GANHAR RECURSOS:
+  - Destruir inimigo pequeno: 10-20 Metal
+  - Destruir inimigo medio: 30-50 Metal
+  - Destruir inimigo grande: 80-150 Metal
+  - Boss: 200-500 Metal
+  - Wave completion bonus: Varia
+
+GASTAR RECURSOS:
+  - Upgrades de nave: 50-500 Metal
+  - Torres: 100-300 Metal (por torre)
+  - Upgrade de torres: 50-200 Metal
+  - Special items: Varia
+
+GEMS (recurso premium - opcional):
+  - Recurso mais raro
+  - Ganho em achievements, boss kills
+  - Usado para upgrades especiais
+  - Ou itens premium
+
+ECONOMIA:
+  - Balance entre gastar e economizar
+  - Investir cedo = vantagem depois
+  - Mas sempre mantenha reserva
+
+────────────────────────────────────────────────────────────────────
+  SISTEMA DE WAVES
+────────────────────────────────────────────────────────────────────
+
+WAVE STRUCTURE:
+  Wave 1: Tutorial-like, facil
+  Wave 2-5: Early game, dificuldade gradual
+  Wave 6-10: Mid game, variety de inimigos
+  Wave 11-15: Late game, desafiador
+  Wave 16+: Endgame, muito dificil
+
+BOSS WAVES:
+  - A cada 5 waves (5, 10, 15, 20...)
+  - Boss spawn com inimigos normais
+  - Boss tem muito HP e dano alto
+  - Recompensa grande ao derrotar
+
+WAVE PROGRESSION:
+  - Cada wave tem mais inimigos que anterior
+  - Novos tipos de inimigos introduzidos
+  - Mix de tipos aumenta complexidade
+  - Spawn rate aumenta
+
+INTERMISSION:
+  - 15-30 segundos entre waves
+  - Tempo para upgrades e construcao
+  - Nao pode ser atacado
+  - Countdown mostrado
+
+────────────────────────────────────────────────────────────────────
+  SISTEMA DE SCORE
+────────────────────────────────────────────────────────────────────
+
+SCORE CALCULATION:
+  - Matar inimigo: 100 points x tipo
+  - Completar wave: 500 points x wave number
+  - Time bonus: Quanto mais rapido, mais pontos
+  - No damage bonus: Se nao tomou dano na wave
+
+MULTIPLIERS:
+  - Combo kills: Matar varios inimigos seguidos
+  - Headshot (se implementado): 2x score
+  - Overkill (dano excessivo): 1.5x score
+
+HIGH SCORE:
+  - Salvo localmente
+  - Tente bater seu recorde
+  - Leaderboard (se online implementado)
+
+================================================================================
+  4. ESTRATEGIAS E DICAS
+================================================================================
+
+────────────────────────────────────────────────────────────────────
+  ESTRATEGIA EARLY GAME (Waves 1-5)
+────────────────────────────────────────────────────────────────────
+
+PRIORIDADES:
+  1. Sobrevivencia primeiro
+  2. Fazer upgrade de DAMAGE e FIRE RATE
+  3. Plantar 2-3 torres em posicoes chave
+  4. Economizar ~100 Metal para emergencias
+
+DICAS:
+  - Nao gaste TUDO imediatamente
+  - Torres em chokepoints (onde inimigos passam)
+  - Foque em upgrades baratos primeiro
+  - Aprenda padroes de spawn
+
+ERROS COMUNS:
+  X Gastar tudo em uma torre cara
+  X Ignorar upgrades de nave
+  X Ficar parado (seja movel!)
+  X Nao economizar recursos
+
+────────────────────────────────────────────────────────────────────
+  ESTRATEGIA MID GAME (Waves 6-15)
+────────────────────────────────────────────────────────────────────
+
+PRIORIDADES:
+  1. Balance upgrades de nave e torres
+  2. Ter pelo menos 5-7 torres funcionais
+  3. Comece a usar special weapons
+  4. Priorize sobrevivencia (HP/Shield upgrades)
+
+DICAS:
+  - Diversifique tipos de torres
+  - Upgrade torres existentes vs plantar novas
+  - Use special weapons em situacoes criticas
+  - Adapte estrategia a tipos de inimigos
+
+POSITIONING:
+  - Mantenha distancia de inimigos
+  - Use torres como "muro" defensivo
+  - Kiting: Atire enquanto recua
+
+────────────────────────────────────────────────────────────────────
+  ESTRATEGIA LATE GAME (Wave 16+)
+────────────────────────────────────────────────────────────────────
+
+PRIORIDADES:
+  1. Maximize TODOS os upgrades
+  2. Grid completo de torres
+  3. Use special weapons estrategicamente
+  4. Foco em eficiencia (matar rapido)
+
+DICAS:
+  - Cada segundo conta
+  - Priorize alvos de alto valor
+  - Use environment (se houver obstaculos)
+  - Perfect dodging e essencial
+
+ADAPTACAO:
+  - Waves ficam imprevisíveis
+  - Esteja pronto para mudancas
+  - Reflexos rapidos > Estrategia fixa
+
+────────────────────────────────────────────────────────────────────
+  DICAS DE COMBATE
+────────────────────────────────────────────────────────────────────
+
+MIRA E DISPARO:
+  - Leading Shots: Atire onde inimigo VAI estar
+  - Prediga movimento
+  - Pratique timing
+
+PRIORIZACAO DE ALVOS:
+  1. Support Ships (curam outros)
+  2. Bombers (alto dano)
+  3. Heavy Cruisers (tanky)
+  4. Scouts (faceis mas numerosos)
+
+MOVIMENTO:
+  - Nunca fique parado
+  - Seja um alvo dificil
+  - Movimento circular ao redor de inimigos
+  - Use toda a area disponivel
+
+CONSERVACAO:
+  - Nao spamme special weapons
+  - Guarde para bosses
+  - Municao infinita em arma primaria (geralmente)
+
+────────────────────────────────────────────────────────────────────
+  DICAS DE ECONOMIA
+────────────────────────────────────────────────────────────────────
+
+REGRA 80/20:
+  - Gaste 80% dos recursos
+  - Guarde 20% para emergencias
+
+INVESTIMENTO:
+  - Upgrades cedo = ROI alto
+  - Torres sao investimento de longo prazo
+  - Cada upgrade tem diminishing returns
+
+PRIORITIZACAO:
+  EARLY: Damage > Fire Rate > Speed
+  MID: HP > Damage > Special Weapons
+  LATE: Tudo maximizado
+
+EVITE:
+  X Comprar upgrade caro que nao precisa ainda
+  X Gastar tudo em torres e ignorar nave
+  X Economizar demais (recursos nao usados = desperdicados)
+
+────────────────────────────────────────────────────────────────────
+  DICAS DE POSICIONAMENTO DE TORRES
+────────────────────────────────────────────────────────────────────
+
+PRINCIPIOS:
+  1. CHOKEPOINTS
+     - Onde inimigos TEM que passar
+     - Maximize coverage
+
+  2. OVERLAPPING FIELDS OF FIRE
+     - Range de torres se sobrepoe
+     - Crossfire mata mais rapido
+
+  3. PROTECAO
+     - Torres caras atras
+     - Torres baratas na frente (tanking)
+
+  4. DIVERSIDADE
+     - Mix de tipos de torres
+     - Cada tipo tem papel
+
+LAYOUT RECOMENDADO:
+```
+      [Laser Tower]    [Laser Tower]
+              \          /
+               \        /
+   [Missile]----[NAVE]----[Missile]
+               /        \
+              /          \
+      [Support Tower]  [Support Tower]
+```
+
+ERROS COMUNS:
+  X Torres muito proximas (desperdicio de area)
+  X Torres muito distantes (gaps na defesa)
+  X Todas as torres de um tipo
+  X Bloquear propria nave
+
+================================================================================
+  5. INIMIGOS E ONDAS
+================================================================================
+
+────────────────────────────────────────────────────────────────────
+  TIPOS DE INIMIGOS
+────────────────────────────────────────────────────────────────────
+
+SCOUT FIGHTER
+  Aparencia: Pequeno, rapido, forma basica
+  HP: ████ (Baixo - 50-100)
+  Speed: ████████ (Alto - 8-10)
+  Damage: ██ (Baixo - 5-10)
+  Reward: 10 Metal
+
+  COMPORTAMENTO:
+  - Voa em direcao a nave
+  - Sem padroes complexos
+  - Vem em grupos grandes (5-10)
+
+  ESTRATEGIA:
+  - Fácil de matar individualmente
+  - Perigoso em numero
+  - Use spray weapons
+  - Torres laser sao efetivas
+
+────────────────────────────────────────────────────────────────────
+
+HEAVY CRUISER
+  Aparencia: Grande, lento, armored
+  HP: ████████████ (Alto - 300-500)
+  Speed: ███ (Baixo - 2-4)
+  Damage: ████████ (Alto - 30-50)
+  Reward: 50 Metal
+
+  COMPORTAMENTO:
+  - Avanca lentamente
+  - Tanky, absorve muito dano
+  - Ataque frontal pesado
+
+  ESTRATEGIA:
+  - PRIORIZE - nao deixe chegar perto
+  - Focus fire
+  - Use high damage weapons
+  - Torres missile sao efetivas
+
+────────────────────────────────────────────────────────────────────
+
+BOMBER
+  Aparencia: Medio, carrega bombas
+  HP: ██████ (Medio - 150-200)
+  Speed: █████ (Medio - 5-6)
+  Damage: ████████████ (Area - 40-80)
+  Reward: 30 Metal
+
+  COMPORTAMENTO:
+  - Tenta chegar perto de torres
+  - Explode ao morrer (dano de area!)
+  - Kamikaze se HP baixo
+
+  ESTRATEGIA:
+  - ALTA PRIORIDADE
+  - Mate ANTES de chegar em torres
+  - Mantenha distancia da explosao
+  - Snipe de longe
+
+────────────────────────────────────────────────────────────────────
+
+SUPPORT SHIP
+  Aparencia: Medio, emite aura verde
+  HP: ████ (Baixo - 80-120)
+  Speed: █████ (Medio - 5-6)
+  Damage: 0 (Nao ataca diretamente)
+  Reward: 40 Metal
+  Special: Cura inimigos proximos (20 HP/s)
+
+  COMPORTAMENTO:
+  - Fica atras de outros inimigos
+  - Cura aliados constantemente
+  - Foge se aproximar
+
+  ESTRATEGIA:
+  - PRIORIDADE MAXIMA
+  - Mate PRIMEIRO, sempre!
+  - Sem support ship, outros morrem facil
+  - Ignore outros inimigos, foque nele
+
+────────────────────────────────────────────────────────────────────
+
+BOSS (varios tipos)
+  Aparencia: ENORME, unico, intimidador
+  HP: ████████████████████ (Muito Alto - 2000-5000)
+  Speed: Varia
+  Damage: ████████████████ (Muito Alto - 50-100)
+  Reward: 200-500 Metal + Item especial
+
+  COMPORTAMENTO:
+  - Mecanicas unicas por boss
+  - Padroes de ataque especiais
+  - Fases (muda comportamento com HP baixo)
+
+  ESTRATEGIA:
+  - USE TUDO (special weapons, todas torres)
+  - Aprenda padroes
+  - Dodge e essencial
+  - Longa batalha, tenha paciencia
+
+────────────────────────────────────────────────────────────────────
+  PADROES DE WAVES
+────────────────────────────────────────────────────────────────────
+
+WAVE 1-3: Introduction
+  - Apenas Scouts
+  - Spawn rate baixo
+  - Tutorial-like
+
+WAVE 4-6: Complexity
+  - Scouts + Heavy Cruisers
+  - Introducao de formacoes
+
+WAVE 7-9: Variety
+  - Todos os tipos basicos
+  - Mix balanceado
+
+WAVE 10: BOSS
+  - Boss + Scouts de suporte
+  - Primeira grande batalha
+
+WAVE 11-14: Intensity
+  - Alta densidade
+  - Spawn rate aumentado
+  - Support Ships comuns
+
+WAVE 15: BOSS
+  - Boss mais forte
+  - Mix de inimigos de suporte
+
+WAVE 16+: Chaos
+  - Tudo ao mesmo tempo
+  - Densidade maxima
+  - Survival mode
+
+================================================================================
+  6. UPGRADES E PROGRESSAO
+================================================================================
+
+────────────────────────────────────────────────────────────────────
+  UPGRADES DE NAVE
+────────────────────────────────────────────────────────────────────
+
+DAMAGE (Dano por Disparo)
+  Level 1: Damage = 10 | Custo: FREE
+  Level 2: Damage = 15 | Custo: 50 Metal
+  Level 3: Damage = 22 | Custo: 100 Metal
+  Level 4: Damage = 30 | Custo: 200 Metal
+  Level 5: Damage = 40 | Custo: 400 Metal
+  MAX: Damage = 50 | Custo: 800 Metal
+
+FIRE RATE (Disparos por Segundo)
+  Level 1: 2 shots/s | FREE
+  Level 2: 3 shots/s | 50 Metal
+  Level 3: 4 shots/s | 100 Metal
+  Level 4: 6 shots/s | 200 Metal
+  Level 5: 8 shots/s | 400 Metal
+  MAX: 10 shots/s | 800 Metal
+
+SPEED (Velocidade de Movimento)
+  Level 1: 5 units/s | FREE
+  Level 2: 6 units/s | 30 Metal
+  Level 3: 7.5 units/s | 60 Metal
+  Level 4: 9 units/s | 120 Metal
+  Level 5: 11 units/s | 240 Metal
+  MAX: 13 units/s | 480 Metal
+
+MAX HP (Pontos de Vida)
+  Level 1: 100 HP | FREE
+  Level 2: 150 HP | 80 Metal
+  Level 3: 200 HP | 150 Metal
+  Level 4: 300 HP | 300 Metal
+  Level 5: 400 HP | 600 Metal
+  MAX: 500 HP | 1200 Metal
+
+SPECIAL WEAPONS (Unlocks)
+  Laser Beam: 500 Metal
+  Missiles: 600 Metal
+  EMP Blast: 800 Metal
+  Shield Generator: 1000 Metal
+
+────────────────────────────────────────────────────────────────────
+  UPGRADES DE TORRES
+────────────────────────────────────────────────────────────────────
+
+Cada torre pode ser upgradada individualmente:
+
+TOWER UPGRADE PATHS:
+  Level 1: Base tower | Custo inicial
+  Level 2: +30% stats | 50 Metal
+  Level 3: +60% stats | 100 Metal
+  MAX: +100% stats | 200 Metal
+
+EXEMPLOS:
+  Laser Tower Lv1: 20 DPS, Range 10
+  Laser Tower MAX: 40 DPS, Range 15
+
+  Missile Tower Lv1: 50 Damage/shot, 2s cooldown
+  Missile Tower MAX: 100 Damage/shot, 1s cooldown
+
+────────────────────────────────────────────────────────────────────
+  ORDEM RECOMENDADA DE UPGRADES
+────────────────────────────────────────────────────────────────────
+
+EARLY GAME (Waves 1-5):
+  1. Damage Level 2 (50 Metal)
+  2. Fire Rate Level 2 (50 Metal)
+  3. Plantar 2 torres basicas (200 Metal)
+  4. Speed Level 2 (30 Metal)
+
+MID GAME (Waves 6-10):
+  5. Damage Level 3 (100 Metal)
+  6. HP Level 2 (80 Metal)
+  7. Mais torres + upgrades (300+ Metal)
+  8. Fire Rate Level 3 (100 Metal)
+
+LATE GAME (Wave 11+):
+  9. Maximizar Damage e Fire Rate
+  10. HP Level 3+ (300+ Metal)
+  11. Special Weapons unlocks
+  12. Maximizar tudo
+
+FLEXIBILIDADE:
+  - Adapte baseado em seu estilo de jogo
+  - Se toma muito dano -> Priorize HP
+  - Se inimigos sobrevivem -> Priorize Damage
+
+================================================================================
+  7. TORRES E CONSTRUCAO
+================================================================================
+
+────────────────────────────────────────────────────────────────────
+  TIPOS DE TORRES
+────────────────────────────────────────────────────────────────────
+
+LASER TOWER
+  Custo: 100 Metal
+  Damage: 20 DPS (continuous)
+  Range: 10 units
+  Tipo: Single target, continuous beam
+
+  PROS:
+  + Dano continuo constante
+  + Bom contra tanky enemies
+  + Nao precisa recarregar
+
+  CONS:
+  - Um alvo por vez
+  - Nao efetivo contra muitos inimigos
+
+────────────────────────────────────────────────────────────────────
+
+MISSILE TOWER
+  Custo: 150 Metal
+  Damage: 50 per missile
+  Range: 15 units
+  Fire Rate: 1 missile every 2s
+  Splash: 3 unit radius
+
+  PROS:
+  + Alto dano por hit
+  + Area of effect (splash)
+  + Longo alcance
+
+  CONS:
+  - Cooldown longo
+  - Pode errar alvos rapidos
+
+────────────────────────────────────────────────────────────────────
+
+SUPPORT TOWER
+  Custo: 200 Metal
+  Buff: +50% damage a torres proximas
+  Range: 8 units (buff radius)
+
+  PROS:
+  + Multiplica efetividade de outras torres
+  + Nao precisa de alvo
+  + Sempre ativo
+
+  CONS:
+  - Nao ataca diretamente
+  - Cara
+  - Precisa de outras torres para funcionar
+
+────────────────────────────────────────────────────────────────────
+
+SLOW TOWER (se implementado)
+  Custo: 120 Metal
+  Effect: Reduz velocidade de inimigos 50%
+  Range: 12 units
+  Duration: 3 segundos
+
+  PROS:
+  + CC (crowd control)
+  + Facilita acertar
+  + Sinergiza com outras torres
+
+  CONS:
+  - Baixo dano proprio
+  - Inimigos rapidos ainda problematicos
+
+────────────────────────────────────────────────────────────────────
+  POSICIONAMENTO OTIMO
+────────────────────────────────────────────────────────────────────
+
+LAYOUT EXEMPLO (TOP VIEW):
+
+```
+          TOPO DA TELA
+    ╔══════════════════════════════╗
+    ║  [L]         [M]         [L] ║  <- Linha defensiva front
+    ║                              ║
+    ║      [S]    [NAVE]    [S]    ║  <- Linha de suporte mid
+    ║                              ║
+    ║  [M]         [L]         [M] ║  <- Linha de backup back
+    ╚══════════════════════════════╝
+         FUNDO DA TELA
+
+Legenda:
+[L] = Laser Tower
+[M] = Missile Tower
+[S] = Support Tower
+```
+
+PRINCIPIOS:
+  - Torres em triangulos (overlapping fire)
+  - Support towers centrais (buffam tudo)
+  - Missile towers nas bordas (longo alcance)
+  - Laser towers front (dano constante)
+
+================================================================================
+  8. DICAS AVANCADAS
+================================================================================
+
+────────────────────────────────────────────────────────────────────
+  KITING
+────────────────────────────────────────────────────────────────────
+
+Kiting = Atacar enquanto recua
+
+TECNICA:
+  1. Identifique inimigo se aproximando
+  2. Dispare enquanto se move para TRAS
+  3. Mantenha distancia constante
+  4. Inimigo nunca alcanca voce
+  5. Voce mata sem tomar dano
+
+IDEAL PARA:
+  - Heavy Cruisers (lentos)
+  - Bosses (previsíveis)
+  - Situacoes 1v1
+
+PRATICA:
+  - Mova em circulos ao redor de inimigo
+  - Sempre mantendo distancia
+  - Atire constantemente
+
+────────────────────────────────────────────────────────────────────
+  RESOURCE ROUTING
+────────────────────────────────────────────────────────────────────
+
+Recursos dropados desaparecem apos ~5 segundos
+
+TECNICA:
+  - Posicione nave onde recursos dropam
+  - Coleta automatica
+  - Nao perca tempo indo buscar
+
+PRATICA:
+  - Mate inimigos em areas concentradas
+  - Passe por cima de drops
+  - Nao se arrisque por 10 Metal
+
+────────────────────────────────────────────────────────────────────
+  SPAWN PREDICTION
+────────────────────────────────────────────────────────────────────
+
+Inimigos spawnam em padroes previsíveis
+
+OBSERVE:
+  - Onde inimigos spawnam (bordas)
+  - Timing de spawn
+  - Padroes por wave
+
+USE:
+  - Pre-posicione nave
+  - Esteja pronto para atirar
+  - First shot advantage
+
+────────────────────────────────────────────────────────────────────
+  TOWER JUGGLING
+────────────────────────────────────────────────────────────────────
+
+Vender e replantar torres estrategicamente
+
+QUANDO USAR:
+  - Reposicionar defesas
+  - Adaptar a mudancas de spawn
+  - Otimizar layout
+
+COMO:
+  1. Vender torre (recebe 50% do valor)
+  2. Replantar em posicao melhor
+  3. Perda de 50% mas pode valer a pena
+
+CUIDADO:
+  - Caro (perde metade do investimento)
+  - Use apenas se necessario
+  - Planeje bem antes
+
+────────────────────────────────────────────────────────────────────
+  COMBO SYSTEM
+────────────────────────────────────────────────────────────────────
+
+Matar inimigos rapidamente em sequencia
+
+MECANICA:
+  - Kill 1: 100 points
+  - Kill 2 (dentro de 2s): 150 points (1.5x)
+  - Kill 3: 200 points (2x)
+  - Kill 4+: 250 points (2.5x MAX)
+
+ESTRATEGIA:
+  - Foque em matar rapido
+  - Mantenha combo ativo
+  - Maximize score
+
+BONUS:
+  - Combos altos = Recursos extras
+  - Feedback visual/audio
+  - Satisfacao maxima
+
+================================================================================
+  9. FAQ GAMEPLAY
+================================================================================
+
+Q: Como salvo meu progresso?
+A: Jogo pode ter auto-save entre waves. Ou Save/Load manual no menu.
+   Verifique opcoes de save no menu de pausa.
+
+Q: Posso pausar durante uma wave?
+A: SIM! Pressione ESC a qualquer momento.
+
+Q: O que acontece quando morro?
+A: Game Over screen aparece. Pode Retry (recomeca do zero) ou Quit.
+   High score e salvo se bateu recorde.
+
+Q: Upgrades sao permanentes?
+A: Upgrades duram para aquela "run". Se Game Over, perde upgrades.
+   (A menos que tenha meta-progression implementado)
+
+Q: Qual a melhor torre?
+A: Depende! Missile para area damage, Laser para single target,
+   Support para boost. Mix e ideal.
+
+Q: Como derroto o boss?
+A: Paciencia, use TODOS os recursos, dodge ataques, aprenda padroes.
+   Nao ha segredo, apenas skill e preparacao.
+
+Q: Posso jogar com controle/gamepad?
+A: Depende da implementacao. Geralmente teclado+mouse apenas.
+   Verifique opcoes de controle no menu.
+
+Q: Existe multiplayer?
+A: Depende da versao. Geralmente single-player apenas.
+
+Q: Como desbloquear armas especiais?
+A: Compre no menu de upgrades usando Metal ou Gems.
+
+Q: Recursos carregam entre runs?
+A: Geralmente NAO. Cada run comeca do zero (roguelike style).
+   Exceto se meta-progression implementado.
+
+================================================================================
+  CONCLUSAO
+================================================================================
+
+Torre Futuro e sobre:
+  - Skill progressivo
+  - Decisoes estrategicas
+  - Reflexos rapidos
+  - Adaptacao constante
+
+PRATIQUE:
+  - Cada run voce aprende mais
+  - Falhar e parte do processo
+  - Melhore gradualmente
+
+DIVIRTA-SE:
+  - Esse e o mais importante!
+  - Experimente estrategias
+  - Encontre seu estilo
+
+BOA SORTE, COMANDANTE! 🚀
+
+================================================================================
+FIM DO GUIA DE GAMEPLAY
+================================================================================
+
+VERSAO: 1.0
+DATA: 2025-11-05
+AUTOR: Claude (Anthropic) + Renat
+PROJETO: Torre Futuro - Space Tower Defense
+
+Para mais informacoes:
+- COMECE_AGORA_GUIA_COMPLETO.md
+- ROADMAP_7DIAS.md
+- TROUBLESHOOTING_RAPIDO.txt

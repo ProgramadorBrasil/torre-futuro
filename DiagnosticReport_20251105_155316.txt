@@ -1,0 +1,17 @@
+﻿================================================================================
+UNITY PROJECT DIAGNOSTIC REPORT - Torre Futuro
+Generated: 2025-11-05 15:53:16
+Project Path: D:\games\torre futuro
+================================================================================
+
+PROJECT STATISTICS
+------------------
+Total Files: 10319
+Total Size: 0.13 GB
+Large Files (>50MB): 0
+Problematic Files: 0
+
+CRITICAL ISSUES
+---------------
+HIGH PRIORITY ISSUES
+--------------------

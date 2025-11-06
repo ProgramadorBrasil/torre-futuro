@@ -1,0 +1,1075 @@
+================================================================================
+  TROUBLESHOOTING RAPIDO - TORRE FUTURO
+  GUIA COMPLETO DE SOLUCAO DE PROBLEMAS
+================================================================================
+
+VERSAO: 1.0
+DATA: 2025-11-05
+OBJETIVO: Resolver problemas rapidamente
+
+================================================================================
+  INDICE RAPIDO
+================================================================================
+
+1. PROBLEMAS DE INSTALACAO
+2. PROBLEMAS AO ABRIR O PROJETO
+3. ERROS DE COMPILACAO
+4. PROBLEMAS DE GAMEPLAY
+5. PROBLEMAS DE PERFORMANCE
+6. PROBLEMAS DE AUDIO
+7. PROBLEMAS DE UI
+8. PROBLEMAS DE BUILD
+9. ERROS COMUNS E SOLUCOES
+10. QUANDO PEDIR AJUDA
+
+================================================================================
+  COMO USAR ESTE GUIA
+================================================================================
+
+1. Identifique a categoria do seu problema
+2. Procure o problema especifico
+3. Siga as solucoes em ordem (SOLUCAO 1, 2, 3...)
+4. Teste apos cada solucao
+5. Se nenhuma funcionar, va para "Quando Pedir Ajuda"
+
+LEGENDA:
+[!] = Cuidado/Atencao
+[*] = Importante
+[√] = Solucao testada
+[?] = Pode ou nao funcionar
+[X] = Nao recomendado
+
+================================================================================
+  1. PROBLEMAS DE INSTALACAO
+================================================================================
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 1.1: Unity Hub nao instala
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- Instalador falha
+- Erro durante instalacao
+- Unity Hub nao abre apos instalar
+
+CAUSA COMUM:
+- Permissoes insuficientes
+- Antivirus bloqueando
+- Espaco insuficiente em disco
+
+SOLUCAO 1: Executar como Administrador
+1. Clique direito no instalador
+2. "Executar como administrador"
+3. Aceite o UAC prompt
+4. Tente novamente
+
+SOLUCAO 2: Desabilitar Antivirus Temporariamente
+[!] CUIDADO: Reative depois!
+1. Abra seu antivirus
+2. Desabilite protecao em tempo real
+3. Instale Unity Hub
+4. REATIVE o antivirus
+
+SOLUCAO 3: Verificar Espaco em Disco
+1. Verifique espaco livre (minimo 5GB)
+2. Delete arquivos temporarios se necessario
+3. Use Disk Cleanup (Windows)
+
+SOLUCAO 4: Download Novamente
+1. Delete o instalador atual
+2. Baixe novamente de: https://unity.com/download
+3. Tente instalar novamente
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 1.2: Unity Engine nao instala via Hub
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- Download trava
+- Instalacao falha
+- Erro "Cannot install"
+
+CAUSA COMUM:
+- Conexao internet instavel
+- Firewall bloqueando
+- Corrupcao de cache
+
+SOLUCAO 1: Verificar Conexao
+1. Teste conexao internet (speedtest.net)
+2. Use conexao cabeada se possivel
+3. Desabilite VPN se tiver
+
+SOLUCAO 2: Limpar Cache do Hub
+1. Feche Unity Hub
+2. Delete pasta cache:
+   Windows: C:\Users\[Usuario]\AppData\Roaming\UnityHub
+   Mac: ~/Library/Application Support/UnityHub
+3. Reabra Unity Hub
+4. Tente novamente
+
+SOLUCAO 3: Firewall
+1. Windows Defender Firewall > Allow an app
+2. Adicione Unity Hub e Unity Editor
+3. Permita em Private e Public networks
+
+SOLUCAO 4: Instalar Versao Diferente
+1. Tente versao LTS mais recente
+2. Ou versao anterior se problema persistir
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 1.3: "License not found" ao abrir Unity
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- Unity pede licenca
+- Nao consegue usar sem licenca
+- Erro de ativacao
+
+SOLUCAO 1: Ativar Personal License
+1. Unity Hub > Settings > License Management
+2. Click "Activate New License"
+3. Selecione "Unity Personal"
+4. Aceite termos
+5. Login com Unity ID (crie se nao tiver)
+
+SOLUCAO 2: Offline Activation
+Se sem internet:
+1. Request manual activation file
+2. Use outro computador para processar
+3. Import activation file
+
+SOLUCAO 3: Remover e Re-adicionar Licenca
+1. Remove all licenses
+2. Restart Unity Hub
+3. Add license novamente
+
+================================================================================
+  2. PROBLEMAS AO ABRIR O PROJETO
+================================================================================
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 2.1: "Cannot open project - Version mismatch"
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- Unity nao abre o projeto
+- Erro de versao incompativel
+- Pede para abrir com versao especifica
+
+CAUSA:
+- Projeto criado com versao diferente do Unity
+
+SOLUCAO 1: Verificar Versao Necessaria
+1. Abra: D:\games\torre futuro\ProjectSettings\ProjectVersion.txt
+2. Veja versao: m_EditorVersion: 2021.3.X
+3. Instale essa versao ou superior no Unity Hub
+
+SOLUCAO 2: Abrir com Versao Superior
+1. Unity pode fazer upgrade automatico
+2. Unity Hub > Open > Selecione projeto
+3. Aceite upgrade (backup antes se importante!)
+[!] Upgrade e one-way, nao pode reverter!
+
+SOLUCAO 3: Recrear Library
+1. Feche Unity
+2. Delete pasta: D:\games\torre futuro\Library\
+3. Reabra projeto (Library sera recriada)
+[!] Demora mais na primeira vez
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 2.2: Projeto abre mas trava em "Importing Assets"
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- Barra de progresso trava
+- Fica em "Importing..." indefinidamente
+- Unity nao responde
+
+SOLUCAO 1: Aguardar (Primeira Vez Demora!)
+- Primeira importacao pode levar 5-15 minutos
+- Seja paciente
+- Verifique Task Manager - Unity deve estar usando CPU
+
+SOLUCAO 2: Fechar e Reabrir
+1. Force close Unity (Task Manager)
+2. Reabra projeto
+3. Continuara de onde parou
+
+SOLUCAO 3: Importacao em Safe Mode
+1. Hold Alt ao abrir projeto
+2. Abre em Safe Mode
+3. Importa assets manualmente
+
+SOLUCAO 4: Reimportar Assets
+1. Delete pasta Library/
+2. Delete pasta Temp/ (se existir)
+3. Reabra projeto
+4. Assets serao reimportados
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 2.3: "Unable to parse file" ou "YAML error"
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- Erro ao importar cenas ou prefabs
+- Mensagem de YAML parsing error
+- Arquivos corrompidos
+
+CAUSA:
+- Arquivo corrompido ou editado manualmente
+
+SOLUCAO 1: Restaurar de Backup
+- Se tiver backup (Git), restaure arquivo
+- git checkout <arquivo>
+
+SOLUCAO 2: Recrear Asset
+- Se possivel, delete o asset problematico
+- Recrie do zero
+
+SOLUCAO 3: Editar Manualmente YAML (Avancado)
+[!] Apenas se souber o que esta fazendo!
+1. Abra arquivo .unity ou .prefab em editor de texto
+2. Procure linhas corrompidas
+3. Corrija sintaxe YAML
+4. Salve
+
+SOLUCAO 4: Forcar Reimportacao
+1. Selecione asset
+2. Right-click > Reimport
+3. Ou Reimport All: Assets > Reimport All
+
+================================================================================
+  3. ERROS DE COMPILACAO
+================================================================================
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 3.1: "Type or namespace 'X' could not be found"
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- Script nao compila
+- Erro vermelho no Console
+- Namespace nao encontrado
+
+EXEMPLO:
+"The type or namespace name 'UnityEngine' could not be found"
+
+SOLUCAO 1: Adicionar Using Statement
+Adicione no topo do script:
+
+using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
+
+SOLUCAO 2: Verificar Spelling
+- Typo no nome?
+- Case-sensitive (C# e case-sensitive!)
+
+SOLUCAO 3: Reimport Scripts
+1. Assets > Reimport All
+2. Aguarde recompilacao
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 3.2: "... does not contain a definition for ..."
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- Tentando acessar metodo/variavel que nao existe
+- Typo em nome de metodo
+
+EXEMPLO:
+"'GameObject' does not contain a definition for 'GetCompnent'"
+                                                    ^ typo
+
+SOLUCAO 1: Verificar Spelling
+- GetComponent (correto)
+- GetCompnent (errado)
+- Case matters!
+
+SOLUCAO 2: Verificar Tipo
+- Tentando acessar metodo de tipo errado?
+- transform.position (correto)
+- gameObject.position (errado - GameObject nao tem position)
+
+SOLUCAO 3: Usar IntelliSense
+- Ctrl+Space no VS Code
+- Ve metodos disponiveis
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 3.3: "NullReferenceException"
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- Erro ao acessar variavel null
+- Jogo pode funcionar mas da erro em runtime
+
+EXEMPLO:
+"NullReferenceException: Object reference not set to an instance..."
+
+CAUSA:
+- Variavel e null
+- Referencia nao foi assignada no Inspector
+- GameObject foi destruido
+
+SOLUCAO 1: Verificar Inspector
+- Selecione GameObject com script
+- Inspector: Todas as referencias assignadas?
+- Arraste objetos necessarios para campos vazios
+
+SOLUCAO 2: Adicionar Null Check
+Antes de usar:
+
+if (myObject != null) {
+    myObject.DoSomething();
+} else {
+    Debug.LogWarning("myObject is null!");
+}
+
+SOLUCAO 3: Inicializar no Start/Awake
+
+void Start() {
+    myComponent = GetComponent<MyComponent>();
+    if (myComponent == null) {
+        Debug.LogError("Component not found!");
+    }
+}
+
+SOLUCAO 4: Debug.Log para Diagnostico
+
+void Update() {
+    Debug.Log($"myObject = {myObject}"); // Ve se e null
+    if (myObject != null) {
+        myObject.DoSomething();
+    }
+}
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 3.4: "Missing MonoBehaviour" ou "Script is missing"
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- GameObject tem (!) no Inspector
+- Script component aparece como "Missing"
+- Funcionalidade nao funciona
+
+CAUSA:
+- Script foi deletado ou renomeado
+- GUID mismatch
+
+SOLUCAO 1: Re-attach Script
+1. Remove o component missing
+2. Add Component novamente
+3. Arraste o script correto
+
+SOLUCAO 2: Restaurar Script
+- Se deletou acidentalmente, restaure de backup
+- Git: git checkout <script.cs>
+
+SOLUCAO 3: Verificar Nome da Classe
+- Nome do arquivo DEVE ser igual ao nome da classe
+
+Arquivo: MyScript.cs
+Classe: public class MyScript : MonoBehaviour
+
+Se diferentes, Unity nao reconhece!
+
+================================================================================
+  4. PROBLEMAS DE GAMEPLAY
+================================================================================
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 4.1: Controles nao funcionam (WASD/Spacebar)
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- Pressiona teclas, nada acontece
+- Nave nao se move
+- Arma nao dispara
+
+SOLUCAO 1: Verificar Foco
+- Clique dentro do Game View
+- Game View deve ter foco (borda azul)
+
+SOLUCAO 2: Verificar Script Ativo
+1. Selecione nave no Hierarchy
+2. Inspector > SpaceshipController component
+3. Checkbox deve estar marcado (enabled)
+
+SOLUCAO 3: Verificar Input Manager
+1. Edit > Project Settings > Input Manager
+2. Verifique axes:
+   - "Horizontal" existe
+   - "Vertical" existe
+   - "Fire1" existe
+
+SOLUCAO 4: Debug Input
+Adicione em SpaceshipController.cs Update():
+
+void Update() {
+    float h = Input.GetAxis("Horizontal");
+    float v = Input.GetAxis("Vertical");
+    Debug.Log($"H={h}, V={v}");
+    // Se sempre 0, input nao esta funcionando
+}
+
+SOLUCAO 5: Verificar Se Nao Esta Pausado
+- Time.timeScale deve ser 1
+- Se pausado, input pode nao responder
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 4.2: Nave se move mas muito lento ou muito rapido
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- Movimento extremamente lento
+- Ou extremamente rapido
+
+SOLUCAO: Ajustar Speed no Inspector
+1. Selecione nave
+2. SpaceshipController > Speed
+3. Recomendado: 5-10 para normal
+4. Teste e ajuste
+
+NOTA: Pode estar usando Time.deltaTime incorretamente no codigo
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 4.3: Inimigos nao spawnam
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- Jogo inicia, mas sem inimigos
+- Wave nao avanca
+
+SOLUCAO 1: Verificar GameManager
+- GameManager esta na cena?
+- Hierarchy > Procure "GameManager"
+- Se nao, arraste de Prefabs
+
+SOLUCAO 2: Verificar Enemy Prefabs
+- GameManager > Inspector
+- Enemy Prefabs array nao esta vazio?
+- Arraste prefabs de inimigos
+
+SOLUCAO 3: Verificar Spawn Settings
+- Spawn Rate > 0
+- Max Enemies > 0
+- Spawn Points existem na cena
+
+SOLUCAO 4: Check Console
+- Erros impedindo spawn?
+- Null reference no spawn system?
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 4.4: Colisoes nao funcionam
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- Projeteis passam atraves de inimigos
+- Nave passa atraves de obstaculos
+- OnCollision/OnTrigger nao chama
+
+SOLUCAO 1: Verificar Colliders
+- Objetos tem Collider components?
+  - BoxCollider2D / CircleCollider2D (2D)
+  - BoxCollider / SphereCollider (3D)
+- Colliders estao enabled?
+- Tamanho apropriado?
+
+SOLUCAO 2: Verificar Rigidbody
+- Pelo menos UM objeto deve ter Rigidbody
+- Rigidbody2D (2D) ou Rigidbody (3D)
+- Se kinematic, OnTrigger funciona, OnCollision nao
+
+SOLUCAO 3: Verificar Layers
+- Objetos estao em layers corretos?
+- Edit > Project Settings > Physics
+- Layer Collision Matrix: Layers se colidem?
+
+SOLUCAO 4: Trigger vs Collision
+- Is Trigger = checked -> OnTriggerEnter
+- Is Trigger = unchecked -> OnCollisionEnter
+- Use o callback correto no codigo!
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 4.5: Jogo pausa sozinho ou nao despausa
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- Jogo pausa inesperadamente
+- Time.timeScale = 0 nao volta a 1
+
+SOLUCAO 1: Verificar Time.timeScale
+Debug no codigo:
+
+void Update() {
+    Debug.Log($"TimeScale = {Time.timeScale}");
+}
+
+Se sempre 0, algo esta setando para 0
+
+SOLUCAO 2: Procurar Time.timeScale no Codigo
+- Ctrl+Shift+F (Find in Files)
+- Procure "Time.timeScale"
+- Veja onde esta sendo setado
+- Corrija logica de pause/unpause
+
+SOLUCAO 3: Pause Menu Bug
+- Pause menu pode estar setando timeScale = 0
+- Resume deve setar timeScale = 1
+- Verifique PauseMenu script
+
+================================================================================
+  5. PROBLEMAS DE PERFORMANCE
+================================================================================
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 5.1: FPS muito baixo (< 30)
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- Jogo travando/stuttering
+- Movimentos nao suaves
+- FPS counter mostra < 30
+
+SOLUCAO RAPIDA: Diminuir Quality Settings
+1. Edit > Project Settings > Quality
+2. Selecione "Low" ou "Very Low"
+3. Desabilite VSync
+4. Teste novamente
+
+SOLUCAO 1: Profiling
+1. Window > Analysis > Profiler
+2. Enter Play Mode
+3. Veja o que usa mais CPU/GPU
+4. Foque em otimizar o bottleneck
+
+SOLUCAO 2: Reduzir Resolucao
+- Game View > Resolution dropdown
+- Tente 1280x720 ou menor
+- Se FPS melhora, GPU era bottleneck
+
+SOLUCAO 3: Reduzir Draw Calls
+- Profiler > Rendering
+- Muitos draw calls?
+- Combine meshes
+- Use sprite atlases
+
+SOLUCAO 4: Object Pooling
+Se criando/destruindo muitos objetos:
+- Implemente object pooling
+- Evita Instantiate/Destroy constante
+- Melhora performance dramaticamente
+
+SOLUCAO 5: Otimizar Scripts
+- Evite GetComponent() em Update()
+- Cache referencias no Start()
+- Evite Find() em Update()
+
+Exemplo:
+```csharp
+// Ruim:
+void Update() {
+    GetComponent<Rigidbody>().velocity = ...;
+}
+
+// Bom:
+Rigidbody rb;
+void Start() {
+    rb = GetComponent<Rigidbody>();
+}
+void Update() {
+    rb.velocity = ...;
+}
+```
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 5.2: Memory leak (RAM aumenta constantemente)
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- Profiler mostra memoria aumentando
+- Jogo eventualmente trava
+- RAM do sistema esgota
+
+SOLUCAO 1: Verificar Objetos Nao Destruidos
+- Profiler > Memory
+- Muitos objetos acumulando?
+- Destroy() objetos quando nao necessarios
+
+SOLUCAO 2: Verificar Event Subscriptions
+Sempre unsubscribe:
+
+void OnEnable() {
+    EventManager.OnSomething += Handler;
+}
+
+void OnDisable() {
+    EventManager.OnSomething -= Handler; // IMPORTANTE!
+}
+
+SOLUCAO 3: Verificar Coroutines
+- Pare coroutines quando objeto e destruido
+- StopAllCoroutines() em OnDestroy()
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 5.3: Loading/Carregamento muito lento
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- Cena demora muito para carregar
+- Primeira vez ainda mais
+
+SOLUCAO 1: Async Loading
+- Use SceneManager.LoadSceneAsync()
+- Mostra loading screen enquanto carrega
+
+SOLUCAO 2: Otimizar Scene
+- Muitos objetos na cena?
+- Use prefabs e instancie em runtime
+- Nao coloque tudo na cena inicial
+
+SOLUCAO 3: Asset Bundle
+- Assets grandes?
+- Use Asset Bundles para carregar sob demanda
+
+================================================================================
+  6. PROBLEMAS DE AUDIO
+================================================================================
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 6.1: Sem audio (musica ou SFX)
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- Jogo sem som
+- Musica nao toca
+- SFX nao tocam
+
+SOLUCAO 1: Verificar Volume do Sistema
+- Volume do Windows/Mac nao esta muted?
+- Volume > 0?
+- Fones/Speakers conectados?
+
+SOLUCAO 2: Verificar Audio Listener
+- Main Camera deve ter Audio Listener component
+- Hierarchy > Main Camera > Inspector
+- Audio Listener presente e enabled?
+- Apenas UM Audio Listener por cena!
+
+SOLUCAO 3: Verificar AudioSource
+- GameObject com audio tem AudioSource?
+- AudioSource esta enabled?
+- Audio Clip esta assignado?
+- Volume > 0?
+- Mute esta desmarcado?
+
+SOLUCAO 4: Verificar Audio Mixer
+- Window > Audio > Audio Mixer
+- Nenhum grupo esta muted?
+- Volume nao esta em -80dB?
+
+SOLUCAO 5: Play On Awake
+- Se musica nao toca:
+- AudioSource > Play On Awake checked?
+- Ou chame audioSource.Play() no Start()
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 6.2: Audio crackling/popping/distorcendo
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- Som com ruido
+- Pops/clicks
+- Distorcao
+
+SOLUCAO 1: Verificar Sample Rate
+- Edit > Project Settings > Audio
+- DSP Buffer Size: Best Performance
+- Sample Rate: 48000 Hz
+
+SOLUCAO 2: Verificar Audio Clip Settings
+- Selecione audio clip
+- Inspector > Load Type: "Streaming" (para musica)
+- Inspector > Load Type: "Decompress On Load" (para SFX curtos)
+
+SOLUCAO 3: CPU Overload
+- Audio crackle pode ser CPU bottleneck
+- Otimize performance (veja secao 5)
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 6.3: SFX tocam mas muito baixo ou muito alto
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- Volume inconsistente
+- SFX muito alto comparado com musica
+
+SOLUCAO: Audio Mixing
+1. Window > Audio > Audio Mixer
+2. Crie grupos: Music, SFX, UI
+3. Ajuste volumes:
+   - Music: -10 dB
+   - SFX: 0 dB
+   - UI: -5 dB
+4. Assign AudioSources aos grupos corretos
+
+================================================================================
+  7. PROBLEMAS DE UI
+================================================================================
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 7.1: UI nao aparece
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- HUD invisivel
+- Botoes nao aparecem
+- Tela vazia
+
+SOLUCAO 1: Verificar Canvas
+- Hierarchy > Procure "Canvas"
+- Canvas esta enabled (checkbox marcado)?
+- Canvas Scaler configurado?
+
+SOLUCAO 2: Verificar Render Mode
+- Canvas > Render Mode: "Screen Space - Overlay"
+- Ou "Screen Space - Camera" com camera assignada
+
+SOLUCAO 3: Verificar Z Position
+- Elementos UI em Z = 0
+- Canvas em Z correto
+- Nada por tras da camera
+
+SOLUCAO 4: Verificar Layers
+- UI elements em layer "UI"
+- Camera renderiza layer UI?
+
+SOLUCAO 5: Verificar Scale
+- Canvas Scaler > UI Scale Mode: Scale With Screen Size
+- Reference Resolution: 1920x1080
+- Elementos UI nao tem scale 0
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 7.2: Botoes nao clicaveis
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- Botoes visiveis mas nao respondem a clicks
+- Hover nao muda estado
+
+SOLUCAO 1: Verificar Event System
+- Hierarchy > Procure "EventSystem"
+- Se nao existir: GameObject > UI > Event System
+- Apenas UM EventSystem por cena
+
+SOLUCAO 2: Verificar Button Component
+- Button tem component "Button" attachado?
+- Interactable checkbox marcado?
+- OnClick() events configurados?
+
+SOLUCAO 3: Verificar Raycast Target
+- Image component > Raycast Target checked?
+- Sem Raycast Target, UI nao detecta clicks
+
+SOLUCAO 4: Verificar Obstrucao
+- Algo na frente do botao bloqueando?
+- Outro canvas ou panel?
+- Ajuste Sorting Order
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 7.3: Texto cortado ou nao visivel
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- Texto aparece cortado
+- Ou nao aparece
+- "..."
+
+SOLUCAO 1: Ajustar RectTransform
+- Selecione Text element
+- RectTransform > Anchor/Position/Size
+- Aumente Width/Height
+
+SOLUCAO 2: Verificar Overflow
+- Text component > Overflow: "Overflow"
+- Permite texto ultrapassar bounds
+
+SOLUCAO 3: Font Size
+- Font size muito grande?
+- Reduza ou aumente RectTransform
+
+SOLUCAO 4: Usar TextMeshPro
+- Melhor que Text legado
+- GameObject > UI > TextMeshPro
+- Melhor rendering e features
+
+================================================================================
+  8. PROBLEMAS DE BUILD
+================================================================================
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 8.1: Build falha com erros
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- "Build Failed"
+- Erros no Console
+
+SOLUCAO 1: Corrigir Erros de Compilacao
+- Build NAO funciona se houver erros!
+- Console > Double-click em erros
+- Corrija TODOS os erros
+- Recompile (automatico)
+- Tente build novamente
+
+SOLUCAO 2: Verificar Scenes in Build
+- File > Build Settings
+- "Scenes in Build" nao esta vazio?
+- Adicione MainGame.unity se necessario
+- Checkbox da cena deve estar marcado
+
+SOLUCAO 3: Espaco em Disco
+- Verifique espaco livre
+- Build precisa de varios GB
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 8.2: Build completa mas executavel nao abre
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- .exe criado
+- Duplo-click nao faz nada
+- Ou abre e fecha imediatamente
+
+SOLUCAO 1: Executar de Terminal/CMD
+- Abra CMD/Terminal
+- Navegue ate pasta do .exe
+- Execute: TorreFuturo.exe
+- Veja erros printados
+
+SOLUCAO 2: Verificar Arquivos
+- Executavel precisa de:
+  - TorreFuturo.exe
+  - TorreFuturo_Data folder
+  - Ambos na mesma pasta!
+
+SOLUCAO 3: Antivirus
+- Antivirus pode estar bloqueando
+- Adicione excecao para o .exe
+
+SOLUCAO 4: Development Build
+- File > Build Settings
+- Marque "Development Build"
+- Permite ver erros e logs
+
+────────────────────────────────────────────────────────────────────
+PROBLEMA 8.3: Build funciona no Editor mas nao no build
+────────────────────────────────────────────────────────────────────
+SINTOMAS:
+- Play Mode funciona perfeitamente
+- Build tem bugs ou nao funciona
+
+CAUSA COMUM:
+- Paths absolutos ou References.Find()
+- Resources nao incluidos no build
+
+SOLUCAO 1: Usar Resources Folder
+- Assets usados em runtime devem estar em:
+  Assets/Resources/
+- Carregar com: Resources.Load()
+
+SOLUCAO 2: Verificar Scenes
+- Todas as cenas em Build Settings?
+- Cenas nao adicionadas nao sao incluidas!
+
+SOLUCAO 3: Addressables
+- Para assets complexos
+- Use Addressables system
+
+================================================================================
+  9. ERROS COMUNS E SOLUCOES
+================================================================================
+
+────────────────────────────────────────────────────────────────────
+ERRO: "The referenced script on this Behaviour is missing"
+────────────────────────────────────────────────────────────────────
+SOLUCAO:
+- Script foi deletado ou renomeado
+- Re-attach o script correto
+- Ou restaure script deletado
+
+────────────────────────────────────────────────────────────────────
+ERRO: "Can't add script component because the script class cannot be found"
+────────────────────────────────────────────────────────────────────
+SOLUCAO:
+- Nome do arquivo != nome da classe
+- Renomeie para match
+- Ou compile errors impedindo
+
+────────────────────────────────────────────────────────────────────
+ERRO: "Assembly could not be loaded"
+────────────────────────────────────────────────────────────────────
+SOLUCAO:
+- Corrupcao de assembly
+- Assets > Reimport All
+- Restart Unity
+
+────────────────────────────────────────────────────────────────────
+ERRO: "Shader error in..."
+────────────────────────────────────────────────────────────────────
+SOLUCAO:
+- Shader incompativel
+- Use shader Built-in do Unity
+- Ou update shader para versao atual
+
+────────────────────────────────────────────────────────────────────
+ERRO: "Index was outside the bounds of the array"
+────────────────────────────────────────────────────────────────────
+SOLUCAO:
+- Acessando indice invalido de array
+- Adicione bounds check:
+
+if (index >= 0 && index < array.Length) {
+    var item = array[index];
+}
+
+────────────────────────────────────────────────────────────────────
+ERRO: "DivideByZeroException"
+────────────────────────────────────────────────────────────────────
+SOLUCAO:
+- Dividindo por zero
+- Adicione check:
+
+if (divisor != 0) {
+    result = numerator / divisor;
+} else {
+    Debug.LogWarning("Attempted division by zero!");
+}
+
+================================================================================
+  10. QUANDO PEDIR AJUDA
+================================================================================
+
+ANTES DE PEDIR AJUDA, CERTIFIQUE-SE:
+[ ] Leu este documento completamente
+[ ] Tentou todas as solucoes sugeridas
+[ ] Googled o erro exato
+[ ] Verificou Unity Answers / Stack Overflow
+[ ] Reiniciou Unity (as vezes resolve)
+
+COMO PEDIR AJUDA EFETIVAMENTE:
+
+INFORMACOES A INCLUIR:
+1. Unity Version (ex: 2021.3.10f1)
+2. OS (Windows 11, macOS 12, etc)
+3. Descricao CLARA do problema
+4. Passos para reproduzir:
+   1. [Faca isso]
+   2. [Depois isso]
+   3. [Resultado inesperado]
+5. O que voce esperava
+6. O que realmente aconteceu
+7. Mensagem de erro COMPLETA (copy/paste)
+8. Screenshot se relevante
+9. Codigo relevante (se aplicavel)
+
+TEMPLATE DE PEDIDO DE AJUDA:
+
+```
+TITULO: [Descricao concisa do problema]
+
+UNITY VERSION: 2021.3.10f1
+OS: Windows 11
+PROJECT: Torre Futuro
+
+PROBLEMA:
+[Descricao detalhada]
+
+PASSOS PARA REPRODUZIR:
+1. [Passo 1]
+2. [Passo 2]
+3. [Problema ocorre]
+
+COMPORTAMENTO ESPERADO:
+[O que deveria acontecer]
+
+COMPORTAMENTO ATUAL:
+[O que realmente acontece]
+
+ERRO NO CONSOLE:
+```
+[Cole erro aqui]
+```
+
+CODIGO RELEVANTE:
+```csharp
+[Cole codigo aqui]
+```
+
+JA TENTEI:
+- [Solucao 1]
+- [Solucao 2]
+- [Nenhuma funcionou]
+
+SCREENSHOT:
+[Anexe imagem se possivel]
+```
+
+ONDE PEDIR AJUDA:
+
+1. UNITY ANSWERS
+   https://answers.unity.com/
+   - Perguntas especificas de Unity
+   - Comunidade ativa
+
+2. UNITY FORUM
+   https://forum.unity.com/
+   - Discussoes mais longas
+   - Suporte oficial
+
+3. REDDIT r/Unity3D
+   https://reddit.com/r/Unity3D
+   - Comunidade amigavel
+   - Respostas rapidas
+
+4. STACK OVERFLOW
+   https://stackoverflow.com/questions/tagged/unity3d
+   - Tag: unity3d
+   - Para questoes de programacao
+
+5. DISCORD
+   - Unity Developer Community
+   - Varias servers de gamedev
+
+DICAS:
+- Seja educado e paciente
+- Agradeça quem ajudar
+- Marque como resolvido se resolver
+- Compartilhe solucao para ajudar outros
+
+================================================================================
+  RECURSOS ADICIONAIS
+================================================================================
+
+DOCUMENTACAO OFICIAL:
+- Unity Manual: https://docs.unity3d.com/Manual/
+- Script Reference: https://docs.unity3d.com/ScriptReference/
+
+TUTORIAIS:
+- Unity Learn: https://learn.unity.com/
+- Brackeys YouTube: https://youtube.com/c/Brackeys
+- Code Monkey: https://youtube.com/c/CodeMonkeyUnity
+
+FERRAMENTAS DE DEBUG:
+- Unity Profiler: Window > Analysis > Profiler
+- Frame Debugger: Window > Analysis > Frame Debugger
+- Console: Window > General > Console
+
+DOCUMENTACAO DO PROJETO:
+- COMECE_AGORA_GUIA_COMPLETO.md
+- API_REFERENCE.md
+- README.md
+
+================================================================================
+  CONCLUSAO
+================================================================================
+
+Problemas sao parte normal do desenvolvimento! Nao desanime.
+
+MANTRA DO GAMEDEV:
+1. Encontre o erro
+2. Google o erro
+3. Tente solucoes
+4. Se nao funcionar, peca ajuda
+5. Documente a solucao para proxima vez
+
+VOCE CONSEGUE! 🚀
+
+================================================================================
+FIM DO TROUBLESHOOTING
+================================================================================
+
+VERSAO: 1.0
+DATA: 2025-11-05
+AUTOR: Claude (Anthropic) + Renat
+PROJETO: Torre Futuro - Space Tower Defense
+
+Para mais ajuda:
+- COMECE_AGORA_GUIA_COMPLETO.md
+- Unity Forum
+- Discord Communities

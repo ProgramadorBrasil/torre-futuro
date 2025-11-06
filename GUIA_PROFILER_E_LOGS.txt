@@ -1,0 +1,304 @@
+================================================================================
+                  GUIA COMPLETO - PROFILER E LOGS
+                        TORRE FUTURO UNITY 6.0
+================================================================================
+
+DATA: 5 de Novembro de 2025
+STATUS: Profiler + Logging System Configurado
+
+================================================================================
+RESUMO EXECUTIVO
+================================================================================
+
+Foram criados sistemas AUTOMÁTICOS de:
+✓ Profiler Data Collection (Dados de performance)
+✓ Editor Log Synchronization (Sincronização de logs)
+✓ Diagnostic Report Generation (Geração de relatórios)
+
+Tudo isso para diagnosticar melhor o problema do Asset Database.
+
+================================================================================
+ESTRUTURA DE PASTAS
+================================================================================
+
+D:\games\torre futuro\
+├── LOGS/                       ← PASTA CENTRALIZADA DE LOGS
+│   ├── Profiler/              ← Dados do Unity Profiler (.raw files)
+│   ├── EditorLogs/            ← Cópias dos logs do Editor
+│   ├── sync-logs.ps1          ← Script para sincronizar logs
+│   ├── analyze-profiler-data.ps1 ← Script para analisar dados
+│   ├── README.md              ← Documentação detalhada
+│   ├── INDEX.txt              ← Índice de arquivos
+│   └── SESSION.log            ← Log da sessão atual
+│
+├── Assets/
+│   └── Editor/
+│       └── ProfilerInit.cs    ← Script que inicia o Profiler automaticamente
+│
+└── [outros arquivos do projeto]
+
+================================================================================
+PASSO A PASSO - COMO USAR
+================================================================================
+
+PASSO 1: ABRIR UNITY COM PROFILER
+──────────────────────────────────
+
+Execute:
+  powershell -ExecutionPolicy Bypass -File "C:\Users\renat\open-unity-with-profiler.ps1"
+
+OU simplesmente:
+  1. Abrir Unity Hub
+  2. Procurar por "Torre Futuro"
+  3. Clicar em "Open"
+
+O que vai acontecer:
+  - Unity abre
+  - Assets/Editor/ProfilerInit.cs executa automaticamente
+  - Profiler começa a capturar dados
+  - Unity mostra "Asset Import in Progress..."
+  - Isso leva 5-10 minutos
+
+IMPORTANTE:
+  ⚠ Não feche Unity durante o Asset Import!
+  ⚠ Deixe rodando até "Asset Import Completed" aparecer no Console
+
+
+PASSO 2: SINCRONIZAR LOGS
+──────────────────────────
+
+Quando o Asset Import terminar (você verá no console):
+
+Execute dentro de D:\games\torre futuro:
+  powershell -ExecutionPolicy Bypass -File ".\LOGS\sync-logs.ps1"
+
+Isso copia o log do Editor para a pasta centralizada:
+  LOGS/EditorLogs/Editor_YYYYMMDD_HHMMSS.log
+
+
+PASSO 3: ANALISAR DADOS
+───────────────────────
+
+Execute dentro de D:\games\torre futuro:
+  powershell -ExecutionPolicy Bypass -File ".\LOGS\analyze-profiler-data.ps1"
+
+Isso gera:
+  - Cópia dos logs do Editor
+  - Análise automática dos problemas
+  - Relatório em ANALYSIS_REPORT_*.txt
+
+
+PASSO 4: ABRIR NO UNITY PROFILER
+─────────────────────────────────
+
+Para visualizar os dados coletados:
+
+  1. Abra novamente o Unity (ou use a instância anterior)
+  2. Menu: Window -> Analysis -> Profiler
+  3. Menu: File -> Load Profile Data
+  4. Navegue até: D:\games\torre futuro\LOGS\Profiler\
+  5. Selecione: profile_YYYYMMDD_HHMMSS.raw
+  6. Analise os gráficos:
+     - Memory: Crescimento durante import
+     - CPU: Qual função consome mais tempo
+     - Assets: Progresso de importação
+
+================================================================================
+O QUE OS DADOS MOSTRAM
+================================================================================
+
+MEMORY USAGE
+────────────
+Mostra quanto RAM o Unity está usando durante o Asset Import.
+
+Normal: Cresce gradualmente de 100MB → 500MB durante import
+Problema: Picos aleatórios ou crescimento infinito
+
+Como interpretar:
+  - Linha subindo lentamente = OK
+  - Picos abruptos = Possível vazamento de memória
+  - Atinge máximo e estabiliza = Esperado
+
+CPU USAGE
+─────────
+Mostra qual função está consumindo mais tempo do processador.
+
+Normal: 80-100% de CPU durante import
+Problema: 100% CPU mas sem progresso na importação
+
+Como interpretar:
+  - AssetDatabase functions = Normal
+  - Import functions = Normal
+  - Mesmo nome de função repetidamente = Loop infinito
+
+
+ASSET LOADING
+──────────────
+Mostra quanto tempo leva para importar cada tipo de asset.
+
+Normal: Texture = 10ms, Model = 20ms, Script = 5ms
+Problema: Mesmo asset levando muito tempo (>1 segundo)
+
+FRAME TIME
+──────────
+Mostra quantos FPS o editor conseguiu durante o import.
+
+Normal: 10-60 FPS (editor não precisa estar smooth)
+Problema: Congelando completamente (0 FPS)
+
+================================================================================
+INTERPRETANDO RESULTADOS
+================================================================================
+
+CENÁRIO 1: Tudo OK
+──────────────────
+✓ Memory cresce uniformemente
+✓ CPU em ~90%
+✓ Asset Loading progride
+✓ Frame Time > 0
+
+Resultado: Asset Database está funcionando
+Ação: Projeto OK para desenvolvimento
+
+CENÁRIO 2: Travamento
+─────────────────────
+✗ Memory fica estático (não muda)
+✗ CPU em 100% mas não progride
+✗ Asset Loading parado
+✗ Frame Time = 0
+
+Resultado: Problema de loop ou corrupção
+Ação: Verificar logs em LOGS/EditorLogs/
+
+
+CENÁRIO 3: Vazamento de Memória
+──────────────────────────────────
+✗ Memory cresce indefinidamente
+✗ CPU uso alto
+✗ Asset Loading lento
+✗ Unity fica cada vez mais lento
+
+Resultado: Possível script problem ou Asset corrompido
+Ação: Procurar por exceções nos logs
+
+
+CENÁRIO 4: Erro de Parsing
+──────────────────────────
+✗ Logs mostram "Unable to parse"
+✗ Asset Import nunca completa
+✗ Memory volta ao inicial
+
+Resultado: Arquivo .asset corrompido
+Ação: Restaurar de backup ou deletar arquivo
+
+================================================================================
+ARQUIVOS DE SAÍDA
+================================================================================
+
+LOGS/Profiler/
+  profile_20251105_160130.raw  ← Dados brutos do profiler
+                                  (Aprox. 100-500 MB)
+                                  Abrir em: Window -> Profiler -> Load Data
+
+LOGS/EditorLogs/
+  Editor_20251105_160130.log   ← Log completo do carregamento
+                                  Procurar por erros com Ctrl+F
+
+LOGS/ANALYSIS_REPORT_*.txt
+  Relatório automático          ← Resumo do que foi encontrado
+                                  Erros, warnings, status geral
+
+LOGS/SESSION.log
+  Log da sessão atual           ← Hora de início/fim, status
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+P: ProfilerInit.cs não está sendo executado
+─────────────────────────────────────────────
+R:
+  1. Verifique que Assets/Editor/ existe
+  2. Verifique que ProfilerInit.cs está no caminho certo
+  3. Se ainda não funcionar, abra o arquivo em C# script:
+     - Confirme que não tem compile errors
+     - Check que o [RuntimeInitializeOnLoadMethod] está presente
+
+P: Nenhum arquivo .raw foi gerado
+────────────────────────────────────
+R:
+  1. Verifique permissões em LOGS/Profiler/
+  2. Tente abrir: File -> New Folder -> Profiler
+  3. Se Profiler ainda não funciona:
+     - Menu: Window -> Analysis -> Profiler
+     - Habilite manualmente: Enable Record (checkbox)
+
+P: Arquivo .raw é muito grande (>1GB)
+──────────────────────────────────────
+R:
+  1. Isso é normal para Asset Imports longos
+  2. Você pode fechar Unity (profiler salva antes de fechar)
+  3. Arquivo fica disponível para análise mesmo após Unity fechar
+
+P: Sync-logs.ps1 diz "Log não encontrado"
+──────────────────────────────────────────
+R:
+  1. Logs só são criados quando Unity abre
+  2. Execute DEPOIS de deixar Unity rodando 1 minuto
+  3. Locação alternativa pode ser diferente - check:
+     C:\Users\[USERNAME]\AppData\Local\Unity\Editor\
+
+P: Analyze não encontra arquivo de profiler
+──────────────────────────────────────────────
+R:
+  1. ProfilerInit.cs pode não ter rodado
+  2. Profiler pode estar deshabilitado
+  3. Tente rodar analyze mesmo assim - ele ainda reportará logs
+
+================================================================================
+DICAS IMPORTANTES
+================================================================================
+
+1. NÃO delete os arquivos .raw antigos
+   - Eles contêm dados valiosos para comparação
+   - Mantenha os últimos 3-5 para referência
+
+2. Sempre faça backup ANTES de tentar algo novo
+   - LOGS/Profiler/ ← Faça backup desses arquivos
+
+3. Se o problema persistir
+   - Colete 2-3 rodadas de dados (múltiplos .raw files)
+   - Compare: Memory, CPU, tempo total entre rodadas
+   - Procure por padrões (quando exatamente trava)
+
+4. Os relatórios de análise são automáticos
+   - Eles focam em erros e problemas
+   - Leia com atenção a seção "Procurando por problemas"
+
+5. Use Ctrl+F nos logs para procurar:
+   - "Unable to parse" = Erro YAML
+   - "Exception" = Exceção de código
+   - "Library" = Problemas de Asset Database
+   - "Reimporting" = Processo de reimportação
+
+================================================================================
+RESUMO FINAL
+================================================================================
+
+Sistema Configurado:
+  ✓ ProfilerInit.cs            (auto-executa com Unity)
+  ✓ sync-logs.ps1              (sincroniza logs)
+  ✓ analyze-profiler-data.ps1  (analisa automaticamente)
+  ✓ Pastas organizadas         (LOGS/Profiler, LOGS/EditorLogs)
+  ✓ Documentação              (README.md, este arquivo)
+
+Próxima Ação:
+  1. Abra Unity com: open-unity-with-profiler.ps1
+  2. Aguarde Asset Database terminar (5-10 min)
+  3. Execute: analyze-profiler-data.ps1
+  4. Leia os relatórios em LOGS/
+
+Todos os dados serão coletados AUTOMATICAMENTE.
+Você não precisa fazer nada a mais!
+
+================================================================================
