@@ -283,7 +283,7 @@ namespace SpaceRPG.UI
                     missionTitleText.text = quest.questName;
 
                 if (missionDescriptionText != null)
-                    missionDescriptionText.text = quest.questDescription;
+                    missionDescriptionText.text = quest.description;
 
                 if (missionProgressText != null)
                     missionProgressText.text = $"{quest.currentAmount} / {quest.targetAmount}";
