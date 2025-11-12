@@ -47,6 +47,7 @@ namespace SpaceRPG.Data
         [SerializeField] private ItemData repairKit;
         [SerializeField] private ItemData waterItem;
         [SerializeField] private ItemData fertilizerItem;
+        [SerializeField] private ItemData pesticideItem;
 
         // Cache para busca rápida
         private Dictionary<string, ItemData> itemCache = new Dictionary<string, ItemData>();
@@ -379,6 +380,7 @@ namespace SpaceRPG.Data
         public ItemData GetRepairKit() => repairKit;
         public ItemData GetWaterItem() => waterItem;
         public ItemData GetFertilizerItem() => fertilizerItem;
+        public ItemData GetPesticideItem() => pesticideItem;
 
         /// <summary>
         /// Valida a integridade do database

@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using DG.Tweening;
 using TMPro;
+using SpaceRPG.Core;
 
 namespace SpaceRPG.UI
 {
@@ -28,7 +28,7 @@ namespace SpaceRPG.UI
 
         [Header("Animation Settings")]
         [SerializeField] private float menuTransitionDuration = 0.8f;
-        [SerializeField] private Ease menuTransitionEase = Ease.OutQuart;
+        [SerializeField] private TweenHelper.EaseType menuTransitionEase = TweenHelper.EaseType.OutQuart;
         [SerializeField] private float buttonHoverScale = 1.1f;
         [SerializeField] private float buttonClickScale = 0.95f;
 
@@ -39,9 +39,12 @@ namespace SpaceRPG.UI
         [SerializeField] private Material buttonActiveMaterial;
 
         [Header("Color Picker Integration")]
-        [SerializeField] private FlexibleColorPicker colorPicker;
+        [SerializeField] private Slider redSlider;
+        [SerializeField] private Slider greenSlider;
+        [SerializeField] private Slider blueSlider;
         [SerializeField] private Image colorPreview;
         [SerializeField] private TextMeshProUGUI colorHexText;
+        private Color currentColor = Color.white;
 
         [Header("Visual Effects")]
         [SerializeField] private ParticleSystem menuParticles;
@@ -129,10 +132,25 @@ namespace SpaceRPG.UI
 
         private void SetupColorPicker()
         {
-            if (colorPicker != null)
-            {
-                colorPicker.onColorChanged.AddListener(OnColorChanged);
-            }
+            // Setup simple color picker com sliders RGB
+            if (redSlider != null)
+                redSlider.onValueChanged.AddListener((value) => UpdateColorFromSliders());
+
+            if (greenSlider != null)
+                greenSlider.onValueChanged.AddListener((value) => UpdateColorFromSliders());
+
+            if (blueSlider != null)
+                blueSlider.onValueChanged.AddListener((value) => UpdateColorFromSliders());
+        }
+
+        private void UpdateColorFromSliders()
+        {
+            float r = redSlider != null ? redSlider.value : 1f;
+            float g = greenSlider != null ? greenSlider.value : 1f;
+            float b = blueSlider != null ? blueSlider.value : 1f;
+
+            currentColor = new Color(r, g, b);
+            OnColorChanged(currentColor);
         }
 
         private void SetupMenuButtons()
@@ -168,7 +186,7 @@ namespace SpaceRPG.UI
         private void OnButtonHover(GameObject button)
         {
             // Animação de hover
-            button.transform.DOScale(buttonHoverScale, 0.2f).SetEase(Ease.OutBack);
+            StartCoroutine(TweenHelper.AnimateScale(button.transform, Vector3.one * buttonHoverScale, 0.2f, TweenHelper.EaseType.OutBack));
 
             // Trocar material
             var renderer = button.GetComponent<Renderer>();
@@ -178,7 +196,7 @@ namespace SpaceRPG.UI
             // Efeito de luz
             if (menuAccentLight != null)
             {
-                menuAccentLight.DOIntensity(1.5f, 0.2f);
+                StartCoroutine(TweenHelper.AnimateLightIntensity(menuAccentLight, 1.5f, 0.2f));
             }
 
             // Som
@@ -187,7 +205,7 @@ namespace SpaceRPG.UI
 
         private void OnButtonExit(GameObject button)
         {
-            button.transform.DOScale(1f, 0.2f).SetEase(Ease.OutBack);
+            StartCoroutine(TweenHelper.AnimateScale(button.transform, Vector3.one, 0.2f, TweenHelper.EaseType.OutBack));
 
             var renderer = button.GetComponent<Renderer>();
             if (renderer != null && buttonDefaultMaterial != null)
@@ -195,25 +213,34 @@ namespace SpaceRPG.UI
 
             if (menuAccentLight != null)
             {
-                menuAccentLight.DOIntensity(1f, 0.2f);
+                StartCoroutine(TweenHelper.AnimateLightIntensity(menuAccentLight, 1f, 0.2f));
             }
         }
 
         private void OnButtonClick(GameObject button)
         {
             // Animação de click
-            button.transform.DOScale(buttonClickScale, 0.1f)
-                .OnComplete(() => button.transform.DOScale(1f, 0.1f));
+            StartCoroutine(ButtonClickAnimation(button));
 
             // Material ativo temporariamente
             var renderer = button.GetComponent<Renderer>();
             if (renderer != null && buttonActiveMaterial != null)
             {
                 renderer.material = buttonActiveMaterial;
-                DOVirtual.DelayedCall(0.2f, () => renderer.material = buttonDefaultMaterial);
+                StartCoroutine(TweenHelper.DelayedCall(0.2f, () =>
+                {
+                    if (renderer != null)
+                        renderer.material = buttonDefaultMaterial;
+                }));
             }
 
             PlayMenuSound(buttonClickSound);
+        }
+
+        private System.Collections.IEnumerator ButtonClickAnimation(GameObject button)
+        {
+            yield return TweenHelper.AnimateScale(button.transform, Vector3.one * buttonClickScale, 0.1f);
+            yield return TweenHelper.AnimateScale(button.transform, Vector3.one, 0.1f);
         }
 
         public void TransitionToMenu(string menuName)
@@ -249,23 +276,31 @@ namespace SpaceRPG.UI
             // Animar menu atual saindo
             if (from != null)
             {
-                from.DOLocalMove(new Vector3(-1000, 0, 0), menuTransitionDuration)
-                    .SetEase(menuTransitionEase);
-                from.DOScale(0.8f, menuTransitionDuration);
+                StartCoroutine(AnimateMenuOut(from));
             }
 
             // Animar novo menu entrando
             if (to != null)
             {
-                to.localPosition = new Vector3(1000, 0, 0);
-                to.localScale = Vector3.one * 0.8f;
-
-                to.DOLocalMove(Vector3.zero, menuTransitionDuration)
-                    .SetEase(menuTransitionEase);
-                to.DOScale(1f, menuTransitionDuration);
+                StartCoroutine(AnimateMenuIn(to));
             }
 
             currentActiveMenu = to;
+        }
+
+        private System.Collections.IEnumerator AnimateMenuOut(Transform menu)
+        {
+            StartCoroutine(TweenHelper.AnimatePosition(menu, menu.position + new Vector3(-1000, 0, 0), menuTransitionDuration, menuTransitionEase));
+            yield return TweenHelper.AnimateScale(menu, Vector3.one * 0.8f, menuTransitionDuration);
+        }
+
+        private System.Collections.IEnumerator AnimateMenuIn(Transform menu)
+        {
+            menu.localPosition = new Vector3(1000, 0, 0);
+            menu.localScale = Vector3.one * 0.8f;
+
+            StartCoroutine(TweenHelper.AnimatePosition(menu, menu.parent.TransformPoint(Vector3.zero), menuTransitionDuration, menuTransitionEase));
+            yield return TweenHelper.AnimateScale(menu, Vector3.one, menuTransitionDuration);
         }
 
         public void OpenMenu3D()
@@ -273,7 +308,7 @@ namespace SpaceRPG.UI
             if (currentActiveMenu != null)
             {
                 currentActiveMenu.localScale = Vector3.zero;
-                currentActiveMenu.DOScale(1f, 0.5f).SetEase(Ease.OutBack);
+                StartCoroutine(TweenHelper.AnimateScale(currentActiveMenu, Vector3.one, 0.5f, TweenHelper.EaseType.OutBack));
 
                 PlayMenuSound(menuOpenSound);
 
@@ -289,7 +324,7 @@ namespace SpaceRPG.UI
         {
             if (currentActiveMenu != null)
             {
-                currentActiveMenu.DOScale(0f, 0.3f).SetEase(Ease.InBack);
+                StartCoroutine(TweenHelper.AnimateScale(currentActiveMenu, Vector3.zero, 0.3f, TweenHelper.EaseType.InBack));
                 PlayMenuSound(menuCloseSound);
 
                 if (neonEffects != null)
@@ -352,8 +387,7 @@ namespace SpaceRPG.UI
         {
             if (menuCamera != null)
             {
-                menuCamera.transform.DORotate(new Vector3(0, angle, 0), 1f)
-                    .SetEase(Ease.InOutSine);
+                StartCoroutine(TweenHelper.AnimateRotation(menuCamera.transform, new Vector3(0, angle, 0), 1f));
             }
         }
 
@@ -361,15 +395,14 @@ namespace SpaceRPG.UI
         {
             if (menuCamera != null)
             {
-                menuCamera.transform.DOLocalMove(new Vector3(0, 0, -distance), 0.8f)
-                    .SetEase(Ease.OutQuart);
+                Vector3 targetPos = new Vector3(0, 0, -distance);
+                StartCoroutine(TweenHelper.AnimatePosition(menuCamera.transform, menuCamera.transform.parent.TransformPoint(targetPos), 0.8f, TweenHelper.EaseType.OutQuart));
             }
         }
 
         private void OnDestroy()
         {
-            // Cleanup DOTween
-            DOTween.Kill(this);
+            StopAllCoroutines();
         }
     }
 }

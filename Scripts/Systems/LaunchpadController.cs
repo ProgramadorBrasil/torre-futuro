@@ -1,8 +1,7 @@
 using UnityEngine;
 using System.Collections;
-using DG.Tweening;
-using Cinemachine;
 using TMPro;
+using SpaceRPG.Core;
 
 namespace SpaceRPG.Systems
 {
@@ -35,9 +34,10 @@ namespace SpaceRPG.Systems
         [SerializeField] private AnimationCurve launchCurve;
 
         [Header("Camera Settings")]
-        [SerializeField] private CinemachineVirtualCamera launchCamera;
+        [SerializeField] private Camera launchCamera;
         [SerializeField] private Camera mainCamera;
         [SerializeField] private float cameraFollowDuration = 2f;
+        [SerializeField] private Vector3 cameraOffset = new Vector3(0, 5, -15);
 
         [Header("Launch Effects")]
         [SerializeField] private ParticleSystem[] engineFlareParticles;
@@ -90,7 +90,7 @@ namespace SpaceRPG.Systems
             // Configurar câmera de lançamento
             if (launchCamera != null)
             {
-                launchCamera.Priority = 0; // Baixa prioridade inicialmente
+                launchCamera.enabled = false; // Desabilitada inicialmente
             }
         }
 
@@ -117,9 +117,7 @@ namespace SpaceRPG.Systems
             var lights = ship.GetComponentsInChildren<Light>();
             foreach (var light in lights)
             {
-                light.DOIntensity(light.intensity * 1.5f, 1f)
-                    .SetLoops(-1, LoopType.Yoyo)
-                    .SetEase(Ease.InOutSine);
+                StartCoroutine(TweenHelper.AnimateLightIntensity(light, light.intensity * 1.5f, 1f, true));
             }
 
             // Vapor leve saindo dos motores
@@ -200,14 +198,15 @@ namespace SpaceRPG.Systems
             // Ativar câmera de lançamento
             if (launchCamera != null)
             {
-                launchCamera.Priority = 100;
+                launchCamera.enabled = true;
+                if (mainCamera != null)
+                    mainCamera.enabled = false;
             }
 
-            // Posicionar câmera
+            // Posicionar câmera para seguir nave
             if (launchCamera != null && currentShip != null)
             {
-                launchCamera.Follow = currentShip;
-                launchCamera.LookAt = currentShip;
+                StartCoroutine(FollowShipCamera());
             }
 
             // Efeitos de preparação
@@ -227,12 +226,7 @@ namespace SpaceRPG.Systems
                 {
                     countdownText.text = i.ToString();
                     countdownText.transform.localScale = Vector3.zero;
-                    countdownText.transform.DOScale(1.5f, 0.5f)
-                        .SetEase(Ease.OutBack)
-                        .OnComplete(() =>
-                        {
-                            countdownText.transform.DOScale(0f, 0.5f);
-                        });
+                    StartCoroutine(AnimateCountdown());
                 }
 
                 PlaySound(engineIdleSound);
@@ -273,7 +267,7 @@ namespace SpaceRPG.Systems
                     var instance = Instantiate(light, currentShip);
                     instance.transform.localPosition = new Vector3(0, -2, 0);
                     instance.intensity = 0f;
-                    instance.DOIntensity(10f, 0.5f);
+                    StartCoroutine(TweenHelper.AnimateLightIntensity(instance, 10f, 0.5f));
                 }
             }
 
@@ -289,7 +283,7 @@ namespace SpaceRPG.Systems
             PlaySound(launchSound);
 
             // Shake da nave
-            currentShip.DOShakeRotation(1f, 5f, 20);
+            StartCoroutine(TweenHelper.ShakeRotation(currentShip, 1f, 5f, 20));
 
             yield return new WaitForSeconds(1.5f);
         }
@@ -356,7 +350,9 @@ namespace SpaceRPG.Systems
             // Fade da câmera
             if (launchCamera != null)
             {
-                launchCamera.Priority = 0;
+                launchCamera.enabled = false;
+                if (mainCamera != null)
+                    mainCamera.enabled = true;
             }
 
             // Esconder UI
@@ -368,8 +364,8 @@ namespace SpaceRPG.Systems
             // Mover nave para posição inicial de gameplay
             if (currentShip != null)
             {
-                currentShip.DOMove(new Vector3(0, 0, 0), 1f);
-                currentShip.DORotate(Vector3.zero, 1f);
+                StartCoroutine(TweenHelper.AnimatePosition(currentShip, Vector3.zero, 1f));
+                StartCoroutine(TweenHelper.AnimateRotation(currentShip, Vector3.zero, 1f));
             }
 
             yield return new WaitForSeconds(1f);
@@ -426,9 +422,29 @@ namespace SpaceRPG.Systems
             return isLaunching;
         }
 
+        private IEnumerator FollowShipCamera()
+        {
+            while (isLaunching && currentShip != null && launchCamera != null)
+            {
+                Vector3 targetPosition = currentShip.position + cameraOffset;
+                launchCamera.transform.position = Vector3.Lerp(launchCamera.transform.position, targetPosition, Time.deltaTime * 2f);
+                launchCamera.transform.LookAt(currentShip);
+                yield return null;
+            }
+        }
+
+        private IEnumerator AnimateCountdown()
+        {
+            if (countdownText != null)
+            {
+                yield return TweenHelper.AnimateScale(countdownText.transform, Vector3.one * 1.5f, 0.5f, TweenHelper.EaseType.OutBack);
+                yield return TweenHelper.AnimateScale(countdownText.transform, Vector3.zero, 0.5f);
+            }
+        }
+
         private void OnDestroy()
         {
-            DOTween.Kill(this);
+            StopAllCoroutines();
         }
     }
 }

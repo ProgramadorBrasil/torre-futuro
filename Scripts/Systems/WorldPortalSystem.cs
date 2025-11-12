@@ -2,8 +2,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
-using DG.Tweening;
 using TMPro;
+using UnityEngine.UI;
+using SpaceRPG.Core;
 
 namespace SpaceRPG.Systems
 {
@@ -128,7 +129,7 @@ namespace SpaceRPG.Systems
             if (directionalLight != null)
             {
                 directionalLight.color = world.galaxyColor;
-                directionalLight.DOIntensity(1.2f, 1f);
+                StartCoroutine(TweenHelper.AnimateLightIntensity(directionalLight, 1.2f, 1f));
             }
 
             // Atualizar cor ambiente
@@ -181,12 +182,11 @@ namespace SpaceRPG.Systems
                 light.color = galaxyWorlds[nextWorldIndex].galaxyColor;
 
                 // Animação pulsante
-                light.DOIntensity(3f, 1f).SetLoops(-1, LoopType.Yoyo);
+                StartCoroutine(TweenHelper.AnimateLightIntensity(light, 3f, 1f, true));
             }
 
             // Rotação contínua
-            portal.transform.DORotate(new Vector3(0, 360, 0), 10f, RotateMode.FastBeyond360)
-                .SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear);
+            StartCoroutine(TweenHelper.RotateContinuous(portal.transform, Vector3.up, 36f));
         }
 
         private void CheckPortalProximity()
@@ -281,18 +281,17 @@ namespace SpaceRPG.Systems
 
                 // Animação do banner
                 galaxyBanner.transform.localScale = Vector3.zero;
-                galaxyBanner.transform.DOScale(1f, 0.5f).SetEase(Ease.OutBack);
+                StartCoroutine(TweenHelper.AnimateScale(galaxyBanner.transform, Vector3.one, 0.5f, TweenHelper.EaseType.OutBack));
             }
 
             // Esconder banner após tempo
-            DOVirtual.DelayedCall(bannerDisplayTime, () =>
+            StartCoroutine(TweenHelper.DelayedCall(bannerDisplayTime, () =>
             {
                 if (galaxyBanner != null)
                 {
-                    galaxyBanner.transform.DOScale(0f, 0.3f).SetEase(Ease.InBack)
-                        .OnComplete(() => galaxyChangeUI.SetActive(false));
+                    StartCoroutine(HideBanner());
                 }
-            });
+            }));
         }
 
         private void UpdateEnemyDifficulty(GalaxyWorld world)
@@ -344,32 +343,18 @@ namespace SpaceRPG.Systems
             }
         }
 
+        private IEnumerator HideBanner()
+        {
+            if (galaxyBanner != null)
+            {
+                yield return TweenHelper.AnimateScale(galaxyBanner.transform, Vector3.zero, 0.3f, TweenHelper.EaseType.InBack);
+                galaxyChangeUI.SetActive(false);
+            }
+        }
+
         private void OnDestroy()
         {
-            DOTween.Kill(this);
-        }
-    }
-
-    // Classes auxiliares para inimigos e spawners
-    public class EnemyController : MonoBehaviour
-    {
-        private float difficultyMultiplier = 1f;
-
-        public void SetDifficultyMultiplier(float multiplier)
-        {
-            difficultyMultiplier = multiplier;
-            // Aplicar multiplicador aos stats do inimigo
-        }
-    }
-
-    public class EnemySpawner : MonoBehaviour
-    {
-        private float spawnRateMultiplier = 1f;
-
-        public void SetSpawnRateMultiplier(float multiplier)
-        {
-            spawnRateMultiplier = multiplier;
-            // Ajustar taxa de spawn
+            StopAllCoroutines();
         }
     }
 }

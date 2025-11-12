@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 using TMPro;
 using SpaceRPG.Systems;
+using SpaceRPG.Core;
 
 namespace SpaceRPG.UI
 {
@@ -156,13 +156,16 @@ namespace SpaceRPG.UI
             if (eyeModel == null) return;
 
             // Animação de piscar (escala Y)
-            eyeModel.transform.DOScaleY(0.1f, blinkDuration * 0.5f)
-                .OnComplete(() =>
-                {
-                    eyeModel.transform.DOScaleY(originalEyeScale.y, blinkDuration * 0.5f);
-                });
+            StartCoroutine(BlinkAnimation());
 
             PlaySound(blinkSound);
+        }
+
+        private System.Collections.IEnumerator BlinkAnimation()
+        {
+            Vector3 closedScale = new Vector3(originalEyeScale.x, 0.1f, originalEyeScale.z);
+            yield return TweenHelper.AnimateScale(eyeModel.transform, closedScale, blinkDuration * 0.5f);
+            yield return TweenHelper.AnimateScale(eyeModel.transform, originalEyeScale, blinkDuration * 0.5f);
         }
 
         public void SetTarget(Transform target)
@@ -226,25 +229,44 @@ namespace SpaceRPG.UI
                 scanEffect.Play();
             }
 
-            // Animação do olho
-            if (eyeModel != null)
-            {
-                eyeModel.transform.DOScale(originalEyeScale * 1.2f, 0.5f)
-                    .SetLoops(6, LoopType.Yoyo)
-                    .OnComplete(() =>
-                    {
-                        eyeModel.transform.localScale = originalEyeScale;
-                        isScanning = false;
-                    });
-            }
-
-            // Luz pulsante
-            if (eyeLight != null)
-            {
-                eyeLight.DOIntensity(3f, 0.3f).SetLoops(6, LoopType.Yoyo);
-            }
+            // Animação do olho e luz
+            StartCoroutine(ScanAnimation());
 
             PlaySound(scanSound);
+        }
+
+        private System.Collections.IEnumerator ScanAnimation()
+        {
+            // Animação pulsante do olho (6 loops)
+            float originalIntensity = eyeLight != null ? eyeLight.intensity : 1f;
+
+            for (int i = 0; i < 6; i++)
+            {
+                // Expandir
+                if (eyeModel != null)
+                {
+                    yield return TweenHelper.AnimateScale(eyeModel.transform, originalEyeScale * 1.2f, 0.25f);
+                }
+                if (eyeLight != null)
+                {
+                    StartCoroutine(TweenHelper.AnimateLightIntensity(eyeLight, 3f, 0.3f));
+                }
+
+                // Contrair
+                if (eyeModel != null)
+                {
+                    yield return TweenHelper.AnimateScale(eyeModel.transform, originalEyeScale, 0.25f);
+                }
+                if (eyeLight != null)
+                {
+                    StartCoroutine(TweenHelper.AnimateLightIntensity(eyeLight, originalIntensity, 0.3f));
+                }
+            }
+
+            if (eyeModel != null)
+                eyeModel.transform.localScale = originalEyeScale;
+
+            isScanning = false;
         }
 
         public void UpdateMissionDisplay()
@@ -269,7 +291,7 @@ namespace SpaceRPG.UI
                 if (missionProgressBar != null)
                 {
                     float progress = (float)quest.currentAmount / quest.targetAmount;
-                    missionProgressBar.DOFillAmount(progress, 0.5f);
+                    StartCoroutine(TweenHelper.AnimateFillAmount(missionProgressBar, progress, 0.5f));
                 }
 
                 // Atualizar cor baseada no progresso
@@ -298,7 +320,7 @@ namespace SpaceRPG.UI
             // Animação de conclusão
             if (eyeModel != null)
             {
-                eyeModel.transform.DOPunchScale(Vector3.one * 0.5f, 0.5f, 5);
+                StartCoroutine(TweenHelper.PunchScale(eyeModel.transform, Vector3.one * 0.5f, 0.5f, 5));
             }
 
             SetEyeColor(completeColor);
@@ -314,9 +336,15 @@ namespace SpaceRPG.UI
             PlaySound(missionCompleteSound);
 
             // Piscar várias vezes
+            StartCoroutine(MultipleBlinksCelebration());
+        }
+
+        private System.Collections.IEnumerator MultipleBlinksCelebration()
+        {
             for (int i = 0; i < 3; i++)
             {
-                DOVirtual.DelayedCall(i * 0.3f, () => Blink());
+                yield return new WaitForSeconds(0.3f);
+                Blink();
             }
         }
 
@@ -325,19 +353,19 @@ namespace SpaceRPG.UI
             // Mudar cor do material do olho
             if (eyeRenderer != null)
             {
-                eyeRenderer.material.DOColor(color, 0.5f);
+                StartCoroutine(TweenHelper.AnimateMaterialColor(eyeRenderer.material, color, 0.5f));
             }
 
             // Mudar cor da luz
             if (eyeLight != null)
             {
-                eyeLight.DOColor(color, 0.5f);
+                StartCoroutine(TweenHelper.AnimateLightColor(eyeLight, color, 0.5f));
             }
 
             // Mudar cor da barra de progresso
             if (missionProgressBar != null)
             {
-                missionProgressBar.DOColor(color, 0.5f);
+                StartCoroutine(TweenHelper.AnimateImageColor(missionProgressBar, color, 0.5f));
             }
         }
 
@@ -349,14 +377,18 @@ namespace SpaceRPG.UI
             {
                 missionPanel.SetActive(true);
                 missionPanel.transform.localScale = Vector3.zero;
-                missionPanel.transform.DOScale(1f, 0.3f).SetEase(Ease.OutBack);
+                StartCoroutine(TweenHelper.AnimateScale(missionPanel.transform, Vector3.one, 0.3f, TweenHelper.EaseType.OutBack));
             }
             else
             {
-                missionPanel.transform.DOScale(0f, 0.3f)
-                    .SetEase(Ease.InBack)
-                    .OnComplete(() => missionPanel.SetActive(false));
+                StartCoroutine(HideMissionPanel());
             }
+        }
+
+        private System.Collections.IEnumerator HideMissionPanel()
+        {
+            yield return TweenHelper.AnimateScale(missionPanel.transform, Vector3.zero, 0.3f, TweenHelper.EaseType.InBack);
+            missionPanel.SetActive(false);
         }
 
         private void PlaySound(AudioClip clip)
@@ -369,7 +401,7 @@ namespace SpaceRPG.UI
 
         private void OnDestroy()
         {
-            DOTween.Kill(this);
+            StopAllCoroutines();
         }
 
         // Classe auxiliar para rastreamento de alvos na UI
