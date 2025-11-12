@@ -2,11 +2,13 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-/// <summary>
-/// Advanced NPC Instructor system with animated avatar, contextual dialogue, and tutorial management
-/// Provides interactive guidance, quest tracking, and dynamic responses to player actions
-/// </summary>
-public class NPCInstructor : MonoBehaviour
+namespace SpaceRPG.Systems
+{
+    /// <summary>
+    /// Advanced NPC Instructor system with animated avatar, contextual dialogue, and tutorial management
+    /// Provides interactive guidance, quest tracking, and dynamic responses to player actions
+    /// </summary>
+    public class NPCInstructor : MonoBehaviour
 {
     #region Dialogue System
     [System.Serializable]
@@ -688,4 +690,5 @@ public class NPCInstructor : MonoBehaviour
     }
 
     #endregion
+}
 }

@@ -1,10 +1,13 @@
 using UnityEngine;
+using SpaceRPG.Systems;
 
-/// <summary>
-/// Controlador básico para inimigos no jogo
-/// Gerencia stats, dificuldade e comportamento base
-/// </summary>
-public class EnemyController : MonoBehaviour
+namespace SpaceRPG.Core
+{
+    /// <summary>
+    /// Controlador básico para inimigos no jogo
+    /// Gerencia stats, dificuldade e comportamento base
+    /// </summary>
+    public class EnemyController : MonoBehaviour
 {
     [Header("Enemy Stats")]
     [SerializeField] private float baseHealth = 100f;
@@ -156,12 +159,11 @@ public class EnemyController : MonoBehaviour
             Gizmos.DrawWireCube(position, new Vector3(healthPercent * 2f, 0.2f, 0.1f));
         }
     }
-}
 
-/// <summary>
-/// Sistema de spawn de inimigos
-/// </summary>
-public class EnemySpawner : MonoBehaviour
+    /// <summary>
+    /// Sistema de spawn de inimigos
+    /// </summary>
+    public class EnemySpawner : MonoBehaviour
 {
     [Header("Spawn Settings")]
     [SerializeField] private GameObject[] enemyPrefabs;
@@ -244,5 +246,6 @@ public class EnemySpawner : MonoBehaviour
         // Desenhar área de spawn
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, spawnRadius);
+    }
     }
 }

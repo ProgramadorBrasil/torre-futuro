@@ -3,12 +3,33 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-/// <summary>
-/// Comprehensive Reward System with XP, credits, kill streaks, combos, and achievement tracking
-/// Integrates with all game systems to provide meaningful progression and feedback
-/// </summary>
-public class RewardSystem : MonoBehaviour
+namespace SpaceRPG.Systems
 {
+    /// <summary>
+    /// Comprehensive Reward System with XP, credits, kill streaks, combos, and achievement tracking
+    /// Integrates with all game systems to provide meaningful progression and feedback
+    /// </summary>
+    public class RewardSystem : MonoBehaviour
+    {
+        #region Singleton
+        private static RewardSystem _instance;
+        public static RewardSystem Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = FindObjectOfType<RewardSystem>();
+                    if (_instance == null)
+                    {
+                        GameObject go = new GameObject("RewardSystem");
+                        _instance = go.AddComponent<RewardSystem>();
+                    }
+                }
+                return _instance;
+            }
+        }
+        #endregion
     #region Reward Types
     public enum RewardType
     {
@@ -114,7 +135,7 @@ public class RewardSystem : MonoBehaviour
     // Private variables
     private float lastKillTime = 0f;
     private float lastComboTime = 0f;
-    private List<RewardData> pendingRewards = new Queue<RewardData>().ToArray() as List<RewardData>;
+    private List<RewardData> pendingRewards = new List<RewardData>();
     private Dictionary<string, Achievement> achievementDict = new Dictionary<string, Achievement>();
 
     // References
@@ -136,6 +157,15 @@ public class RewardSystem : MonoBehaviour
 
     private void Awake()
     {
+        // Singleton pattern
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        _instance = this;
+        DontDestroyOnLoad(gameObject);
+
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
@@ -845,4 +875,5 @@ public class RewardSystem : MonoBehaviour
     public int GetTotalXPEarned() => totalXPEarned;
 
     #endregion
+}
 }

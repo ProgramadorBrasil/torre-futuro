@@ -2,11 +2,13 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-/// <summary>
-/// Advanced Planting System with procedural plant growth, multiple plant types, and reward integration
-/// Supports planting, growth animation, harvesting, and economic integration
-/// </summary>
-public class PlantingSystem : MonoBehaviour
+namespace SpaceRPG.Systems
+{
+    /// <summary>
+    /// Advanced Planting System with procedural plant growth, multiple plant types, and reward integration
+    /// Supports planting, growth animation, harvesting, and economic integration
+    /// </summary>
+    public class PlantingSystem : MonoBehaviour
 {
     #region Plant Types
     public enum PlantType
@@ -751,4 +753,5 @@ public class PlantingSystem : MonoBehaviour
     }
 
     #endregion
+}
 }

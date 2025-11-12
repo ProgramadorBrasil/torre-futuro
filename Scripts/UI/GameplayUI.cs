@@ -4,11 +4,13 @@ using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 
-/// <summary>
-/// Comprehensive Gameplay UI with real-time HUD, menus, notifications, and all visual feedback
-/// Integrates with all game systems to provide complete player interface
-/// </summary>
-public class GameplayUI : MonoBehaviour
+namespace SpaceRPG.UI
+{
+    /// <summary>
+    /// Comprehensive Gameplay UI with real-time HUD, menus, notifications, and all visual feedback
+    /// Integrates with all game systems to provide complete player interface
+    /// </summary>
+    public class GameplayUI : MonoBehaviour
 {
     #region HUD Elements
     [Header("Health & Shields")]
@@ -881,4 +883,5 @@ public class GameplayUI : MonoBehaviour
     }
 
     #endregion
+}
 }

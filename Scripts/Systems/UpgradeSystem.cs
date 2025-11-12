@@ -2,11 +2,13 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 
-/// <summary>
-/// Comprehensive Upgrade System with tech tree, progression tracking, and persistent upgrades
-/// Supports ship upgrades (speed, health, armor) and weapon upgrades (damage, fire rate, ammo)
-/// </summary>
-public class UpgradeSystem : MonoBehaviour
+namespace SpaceRPG.Systems
+{
+    /// <summary>
+    /// Comprehensive Upgrade System with tech tree, progression tracking, and persistent upgrades
+    /// Supports ship upgrades (speed, health, armor) and weapon upgrades (damage, fire rate, ammo)
+    /// </summary>
+    public class UpgradeSystem : MonoBehaviour
 {
     #region Upgrade Categories
     public enum UpgradeCategory
@@ -745,4 +747,5 @@ public class UpgradeSystem : MonoBehaviour
     }
 
     #endregion
+}
 }

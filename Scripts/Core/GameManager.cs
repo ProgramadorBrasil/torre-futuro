@@ -2,11 +2,13 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-/// <summary>
-/// Central Game Manager coordinating all systems, game states, enemy spawning, and level progression
-/// Acts as the main hub connecting SpaceshipController, WeaponSystem, UpgradeSystem, RewardSystem, etc.
-/// </summary>
-public class GameManager : MonoBehaviour
+namespace SpaceRPG.Core
+{
+    /// <summary>
+    /// Central Game Manager coordinating all systems, game states, enemy spawning, and level progression
+    /// Acts as the main hub connecting SpaceshipController, WeaponSystem, UpgradeSystem, RewardSystem, etc.
+    /// </summary>
+    public class GameManager : MonoBehaviour
 {
     #region Singleton
     public static GameManager Instance { get; private set; }
@@ -739,4 +741,5 @@ public class GameManager : MonoBehaviour
     public void DebugSpawnEnemy() => SpawnEnemy();
 
     #endregion
+    }
 }

@@ -2,13 +2,14 @@ using UnityEngine;
 using SpaceRPG.Systems;
 using SpaceRPG.Data;
 using SpaceRPG.UI;
-using SpaceRPG.Core;
 
-/// <summary>
-/// Script de teste para verificar se todos os namespaces e classes estão acessíveis
-/// Remove este arquivo após verificar que tudo compila
-/// </summary>
-public class CompilationTest : MonoBehaviour
+namespace SpaceRPG.Core
+{
+    /// <summary>
+    /// Script de teste para verificar se todos os namespaces e classes estão acessíveis
+    /// Remove este arquivo após verificar que tudo compila
+    /// </summary>
+    public class CompilationTest : MonoBehaviour
 {
     // Este script apenas testa se todas as referências estão corretas
     private void TestReferences()
@@ -33,5 +34,6 @@ public class CompilationTest : MonoBehaviour
         var itemType = typeof(ItemType);
 
         Debug.Log("All references are valid!");
+    }
     }
 }

@@ -2,11 +2,13 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-/// <summary>
-/// Advanced Weapon System supporting 3 weapon types: Laser, Missile, and Plasma
-/// Includes ammo management, fire rate control, visual/audio effects, and upgrade support
-/// </summary>
-public class WeaponSystem : MonoBehaviour
+namespace SpaceRPG.Systems
+{
+    /// <summary>
+    /// Advanced Weapon System supporting 3 weapon types: Laser, Missile, and Plasma
+    /// Includes ammo management, fire rate control, visual/audio effects, and upgrade support
+    /// </summary>
+    public class WeaponSystem : MonoBehaviour
 {
     #region Weapon Types Enum
     public enum WeaponType
@@ -787,3 +789,4 @@ public class EnemyController : MonoBehaviour
 }
 
 #endregion
+}

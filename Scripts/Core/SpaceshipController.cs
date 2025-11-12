@@ -1,12 +1,14 @@
 using UnityEngine;
 using System.Collections;
 
-/// <summary>
-/// Advanced Spaceship Controller with realistic physics, WASD+Mouse controls, and energy management
-/// Supports 360-degree movement with smooth acceleration and deceleration
-/// </summary>
-public class SpaceshipController : MonoBehaviour
+namespace SpaceRPG.Core
 {
+    /// <summary>
+    /// Advanced Spaceship Controller with realistic physics, WASD+Mouse controls, and energy management
+    /// Supports 360-degree movement with smooth acceleration and deceleration
+    /// </summary>
+    public class SpaceshipController : MonoBehaviour
+    {
     [Header("Movement Settings")]
     [SerializeField] private float maxSpeed = 50f;
     [SerializeField] private float acceleration = 20f;
@@ -658,4 +660,5 @@ public class SpaceshipController : MonoBehaviour
     }
 
     #endregion
+}
 }
