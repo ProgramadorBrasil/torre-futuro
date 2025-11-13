@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using SpaceRPG.Core;
+using SpaceRPG.Systems;
 
 namespace SpaceRPG.UI
 {
@@ -11,7 +13,7 @@ namespace SpaceRPG.UI
     /// Integrates with all game systems to provide complete player interface
     /// </summary>
     public class GameplayUI : MonoBehaviour
-{
+    {
     #region HUD Elements
     [Header("Health & Shields")]
     [SerializeField] private Slider healthBar;

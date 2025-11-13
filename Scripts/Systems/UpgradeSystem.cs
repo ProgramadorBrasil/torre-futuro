@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using SpaceRPG.Core;
 
 namespace SpaceRPG.Systems
 {
@@ -9,7 +10,7 @@ namespace SpaceRPG.Systems
     /// Supports ship upgrades (speed, health, armor) and weapon upgrades (damage, fire rate, ammo)
     /// </summary>
     public class UpgradeSystem : MonoBehaviour
-{
+    {
     #region Upgrade Categories
     public enum UpgradeCategory
     {

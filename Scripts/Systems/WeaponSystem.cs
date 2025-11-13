@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using SpaceRPG.Core;
 
 namespace SpaceRPG.Systems
 {
@@ -9,7 +10,7 @@ namespace SpaceRPG.Systems
     /// Includes ammo management, fire rate control, visual/audio effects, and upgrade support
     /// </summary>
     public class WeaponSystem : MonoBehaviour
-{
+    {
     #region Weapon Types Enum
     public enum WeaponType
     {
@@ -776,17 +777,7 @@ public class Projectile : MonoBehaviour
 
         Destroy(gameObject);
     }
-}
-
-// Placeholder for EnemyController (to be implemented)
-public class EnemyController : MonoBehaviour
-{
-    public void TakeDamage(float damage)
-    {
-        // Enemy damage logic here
-        Debug.Log($"Enemy took {damage} damage");
     }
-}
 
 #endregion
 }

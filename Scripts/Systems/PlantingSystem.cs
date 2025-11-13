@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using SpaceRPG.Core;
 
 namespace SpaceRPG.Systems
 {
@@ -9,7 +10,7 @@ namespace SpaceRPG.Systems
     /// Supports planting, growth animation, harvesting, and economic integration
     /// </summary>
     public class PlantingSystem : MonoBehaviour
-{
+    {
     #region Plant Types
     public enum PlantType
     {

@@ -164,88 +164,89 @@ namespace SpaceRPG.Core
     /// Sistema de spawn de inimigos
     /// </summary>
     public class EnemySpawner : MonoBehaviour
-{
-    [Header("Spawn Settings")]
-    [SerializeField] private GameObject[] enemyPrefabs;
-    [SerializeField] private float spawnInterval = 5f;
-    [SerializeField] private int maxEnemiesAtOnce = 5;
-    [SerializeField] private float spawnRadius = 10f;
-
-    [Header("Difficulty")]
-    private float spawnRateMultiplier = 1f;
-
-    private float nextSpawnTime;
-    private int currentEnemyCount = 0;
-
-    private void Update()
     {
-        if (Time.time >= nextSpawnTime && currentEnemyCount < maxEnemiesAtOnce)
+        [Header("Spawn Settings")]
+        [SerializeField] private GameObject[] enemyPrefabs;
+        [SerializeField] private float spawnInterval = 5f;
+        [SerializeField] private int maxEnemiesAtOnce = 5;
+        [SerializeField] private float spawnRadius = 10f;
+
+        [Header("Difficulty")]
+        private float spawnRateMultiplier = 1f;
+
+        private float nextSpawnTime;
+        private int currentEnemyCount = 0;
+
+        private void Update()
         {
-            SpawnEnemy();
-            nextSpawnTime = Time.time + (spawnInterval / spawnRateMultiplier);
-        }
-    }
-
-    /// <summary>
-    /// Spawna um inimigo aleatório
-    /// </summary>
-    private void SpawnEnemy()
-    {
-        if (enemyPrefabs == null || enemyPrefabs.Length == 0) return;
-
-        GameObject prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
-        Vector3 spawnPos = transform.position + Random.insideUnitSphere * spawnRadius;
-        spawnPos.y = transform.position.y; // Manter mesma altura
-
-        GameObject enemy = Instantiate(prefab, spawnPos, Quaternion.identity);
-
-        var controller = enemy.GetComponent<EnemyController>();
-        if (controller != null)
-        {
-            controller.OnEnemyDeath += OnEnemyKilled;
+            if (Time.time >= nextSpawnTime && currentEnemyCount < maxEnemiesAtOnce)
+            {
+                SpawnEnemy();
+                nextSpawnTime = Time.time + (spawnInterval / spawnRateMultiplier);
+            }
         }
 
-        currentEnemyCount++;
-    }
+        /// <summary>
+        /// Spawna um inimigo aleatório
+        /// </summary>
+        private void SpawnEnemy()
+        {
+            if (enemyPrefabs == null || enemyPrefabs.Length == 0) return;
 
-    /// <summary>
-    /// Callback quando inimigo morre
-    /// </summary>
-    private void OnEnemyKilled(EnemyController enemy)
-    {
-        currentEnemyCount--;
-    }
+            GameObject prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+            Vector3 spawnPos = transform.position + Random.insideUnitSphere * spawnRadius;
+            spawnPos.y = transform.position.y; // Manter mesma altura
 
-    /// <summary>
-    /// Define o multiplicador de taxa de spawn
-    /// </summary>
-    public void SetSpawnRateMultiplier(float multiplier)
-    {
-        spawnRateMultiplier = multiplier;
-    }
+            GameObject enemy = Instantiate(prefab, spawnPos, Quaternion.identity);
 
-    /// <summary>
-    /// Para de spawnar inimigos
-    /// </summary>
-    public void StopSpawning()
-    {
-        enabled = false;
-    }
+            var controller = enemy.GetComponent<EnemyController>();
+            if (controller != null)
+            {
+                controller.OnEnemyDeath += OnEnemyKilled;
+            }
 
-    /// <summary>
-    /// Retoma spawn de inimigos
-    /// </summary>
-    public void ResumeSpawning()
-    {
-        enabled = true;
-        nextSpawnTime = Time.time + spawnInterval;
-    }
+            currentEnemyCount++;
+        }
 
-    private void OnDrawGizmosSelected()
-    {
-        // Desenhar área de spawn
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, spawnRadius);
+        /// <summary>
+        /// Callback quando inimigo morre
+        /// </summary>
+        private void OnEnemyKilled(EnemyController enemy)
+        {
+            currentEnemyCount--;
+        }
+
+        /// <summary>
+        /// Define o multiplicador de taxa de spawn
+        /// </summary>
+        public void SetSpawnRateMultiplier(float multiplier)
+        {
+            spawnRateMultiplier = multiplier;
+        }
+
+        /// <summary>
+        /// Para de spawnar inimigos
+        /// </summary>
+        public void StopSpawning()
+        {
+            enabled = false;
+        }
+
+        /// <summary>
+        /// Retoma spawn de inimigos
+        /// </summary>
+        public void ResumeSpawning()
+        {
+            enabled = true;
+            nextSpawnTime = Time.time + spawnInterval;
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            // Desenhar área de spawn
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, spawnRadius);
+        }
     }
-    }
+}
 }
